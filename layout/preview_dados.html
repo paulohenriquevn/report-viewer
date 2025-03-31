@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnalisaJá - Transforme seus dados em previsões precisas</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <main class="container mx-auto px-4 pt-16 pb-8">
+        <!-- Steps -->
+        <section class="mb-8 text-center">
+            <div class="flex justify-center items-center space-x-8">
+                <div class="flex flex-col items-center">
+                    <div class="h-10 w-10 flex items-center justify-center bg-gray-300 text-white rounded-full text-lg font-bold">1</div>
+                    <p class="mt-2 text-gray-500">Upload</p>
+                </div>
+                <div class="h-0.5 w-16 bg-gray-300"></div>
+                <div class="flex flex-col items-center">
+                    <div class="h-10 w-10 flex items-center justify-center bg-blue-600 text-white rounded-full text-lg font-bold">2</div>
+                    <p class="mt-2 text-blue-600 font-semibold">Preview</p>
+                </div>
+                <div class="h-0.5 w-16 bg-gray-300"></div>
+                <div class="flex flex-col items-center">
+                    <div class="h-10 w-10 flex items-center justify-center bg-gray-300 text-white rounded-full text-lg font-bold">3</div>
+                    <p class="mt-2 text-gray-500">Configurar</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preview de Dados -->
+        <section class="mt-8 bg-gray-50 p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-gray-800">Prévia dos Dados</h2>
+            <p class="text-gray-600">Mostrando 5 de 5 linhas</p>
+
+            <div class="mt-6 bg-white p-6 rounded-lg shadow overflow-x-auto">
+                <table class="w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="border border-gray-300 p-2 text-left">Nome</th>
+                            <th class="border border-gray-300 p-2 text-left">Idade</th>
+                            <th class="border border-gray-300 p-2 text-left">Salário</th>
+                            <th class="border border-gray-300 p-2 text-left">Cargo</th>
+                            <th class="border border-gray-300 p-2 text-left">Departamento</th>
+                            <th class="border border-gray-300 p-2 text-left">Experiência (anos)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border border-gray-300 p-2">Maria Silva</td>
+                            <td class="border border-gray-300 p-2">34</td>
+                            <td class="border border-gray-300 p-2">4500</td>
+                            <td class="border border-gray-300 p-2">Analista</td>
+                            <td class="border border-gray-300 p-2">Marketing</td>
+                            <td class="border border-gray-300 p-2">5</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 p-2">João Santos</td>
+                            <td class="border border-gray-300 p-2">42</td>
+                            <td class="border border-gray-300 p-2">7200</td>
+                            <td class="border border-gray-300 p-2">Gerente</td>
+                            <td class="border border-gray-300 p-2">Vendas</td>
+                            <td class="border border-gray-300 p-2">12</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 p-2">Ana Costa</td>
+                            <td class="border border-gray-300 p-2">28</td>
+                            <td class="border border-gray-300 p-2">3800</td>
+                            <td class="border border-gray-300 p-2">Desenvolvedor</td>
+                            <td class="border border-gray-300 p-2">TI</td>
+                            <td class="border border-gray-300 p-2">3</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 p-2">Carlos Oliveira</td>
+                            <td class="border border-gray-300 p-2">38</td>
+                            <td class="border border-gray-300 p-2">5100</td>
+                            <td class="border border-gray-300 p-2">Coordenador</td>
+                            <td class="border border-gray-300 p-2">RH</td>
+                            <td class="border border-gray-300 p-2">8</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 p-2">Juliana Lima</td>
+                            <td class="border border-gray-300 p-2">31</td>
+                            <td class="border border-gray-300 p-2">4200</td>
+                            <td class="border border-gray-300 p-2">Designer</td>
+                            <td class="border border-gray-300 p-2">Marketing</td>
+                            <td class="border border-gray-300 p-2">6</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="flex justify-end mt-6">
+                <button class="bg-blue-600 text-white px-6 py-2 rounded-md">Continuar</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

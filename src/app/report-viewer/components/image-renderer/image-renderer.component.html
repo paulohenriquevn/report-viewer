@@ -1,0 +1,20 @@
+<div class="relative">
+    <!-- Estado de carregamento -->
+    <div *ngIf="isLoading" class="absolute inset-0 flex items-center justify-center bg-gray-100">
+        <div class="text-gray-500">Carregando imagem...</div>
+    </div>
+
+    <!-- Estado de erro -->
+    <div *ngIf="hasError" class="absolute inset-0 flex items-center justify-center bg-gray-100">
+        <div class="text-red-500">Erro ao carregar imagem</div>
+    </div>
+
+    <!-- Imagem -->
+    <img [src]="imageElement.url" [alt]="imageElement.alt || ''" [ngStyle]="imageStyle" (load)="onImageLoad()"
+        (error)="onImageError()" />
+
+    <!-- Legenda -->
+    <p *ngIf="imageElement.caption" class="text-sm text-gray-600 mt-1">
+        {{ imageElement.caption }}
+    </p>
+</div>

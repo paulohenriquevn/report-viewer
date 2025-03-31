@@ -1,0 +1,97 @@
+{
+    "salesByRegion": [
+        {
+            "region": "Sul",
+            "value": 1245000
+        },
+        {
+            "region": "Sudeste",
+            "value": 2350000
+        },
+        {
+            "region": "Centro-Oeste",
+            "value": 890000
+        },
+        {
+            "region": "Norte",
+            "value": 685000
+        },
+        {
+            "region": "Nordeste",
+            "value": 1120000
+        }
+    ],
+    "salesByCategory": [
+        {
+            "category": "Premium",
+            "value": 2850000
+        },
+        {
+            "category": "Standard",
+            "value": 2100000
+        },
+        {
+            "category": "Econômica",
+            "value": 1340000
+        }
+    ],
+    "monthlySales": [
+        {
+            "month": "Jan",
+            "value": 1850000,
+            "target": 1800000
+        },
+        {
+            "month": "Fev",
+            "value": 2100000,
+            "target": 1950000
+        },
+        {
+            "month": "Mar",
+            "value": 2340000,
+            "target": 2100000
+        }
+    ],
+    "salesDetails": [
+        {
+            "product": "UltraBook Pro",
+            "category": "Premium",
+            "region": "Sul",
+            "quantity": 145,
+            "revenue": 435000,
+            "margin": 28.5
+        },
+        {
+            "product": "UltraBook Pro",
+            "category": "Premium",
+            "region": "Sudeste",
+            "quantity": 287,
+            "revenue": 861000,
+            "margin": 29.2
+        },
+        {
+            "product": "UltraBook Pro",
+            "category": "Premium",
+            "region": "Centro-Oeste",
+            "quantity": 98,
+            "revenue": 294000,
+            "margin": 27.8
+        },
+        {
+            "product": "UltraBook Pro",
+            "category": "Premium",
+            "region": "Norte",
+            "quantity": 76,
+            "revenue": 228000,
+            "margin": 26.5
+        },
+        {
+            "product": "UltraBook Pro",
+            "category": "Premium",
+            "region": "Nordeste",
+            "quantity": 112,
+            "revenue": 336000,
+            "margin": 28.0
+        }
+    ]
+}

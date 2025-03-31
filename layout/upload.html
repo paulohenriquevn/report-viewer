@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrativo - AnalisaJá</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white border-r border-gray-200 flex flex-col">
+            <div class="flex items-center p-4 border-b border-gray-200">
+                <div class="w-8 h-8 rounded-md bg-blue-600 flex items-center justify-center text-white font-bold mr-2">A
+                </div>
+                <div class="font-bold text-gray-800">Admin</div>
+            </div>
+
+            <div class="p-4 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <div class="font-medium">AnalisaJá Admin</div>
+                    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto">
+                <nav class="p-2">
+                    <a href="#" class="flex items-center text-blue-600 p-2 rounded-md">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                            </path>
+                        </svg>
+                        Dashboard
+                    </a>
+
+                    <a href="#" class="flex items-center text-gray-600 p-2 hover:bg-gray-100 rounded-md">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                            </path>
+                        </svg>
+                        Upload de Dados
+                    </a>
+
+                    <a href="#" class="flex items-center text-gray-600 p-2 hover:bg-gray-100 rounded-md">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z">
+                            </path>
+                        </svg>
+                        Modelos
+                    </a>
+
+                    <a href="#" class="flex items-center text-gray-600 p-2 hover:bg-gray-100 rounded-md">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                            </path>
+                        </svg>
+                        Usuários
+                    </a>
+
+                    <a href="#" class="flex items-center text-gray-600 p-2 hover:bg-gray-100 rounded-md">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4">
+                            </path>
+                        </svg>
+                        Datasets
+                    </a>
+
+                    <a href="#" class="flex items-center text-gray-600 p-2 hover:bg-gray-100 rounded-md">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Configurações
+                    </a>
+                </nav>
+            </div>
+
+            <div class="p-4 border-t border-gray-200">
+                <a href="#" class="flex items-center text-gray-600 p-2 hover:bg-gray-100 rounded-md">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                    Meu Perfil
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto">
+            <div class="flex justify-between items-center p-4 border-b border-gray-200 bg-white">
+                <h1 class="text-xl font-bold">Dashboard Administrativo</h1>
+                <div class="flex items-center">
+                    <button class="text-blue-600 mr-4">Ajuda</button>
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">U</div>
+                </div>
+            </div>
+
+            <div class="p-6">
+
+                <!-- Steps -->
+                <section class="mb-8 text-center">
+                    <div class="flex justify-center items-center space-x-8">
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="h-10 w-10 flex items-center justify-center bg-blue-600 text-white rounded-full text-lg font-bold">
+                                1</div>
+                            <p class="mt-2 text-blue-600 font-semibold">Upload</p>
+                        </div>
+                        <div class="h-0.5 w-16 bg-gray-300"></div>
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="h-10 w-10 flex items-center justify-center bg-gray-300 text-white rounded-full text-lg font-bold">
+                                2</div>
+                            <p class="mt-2 text-gray-500">Preview</p>
+                        </div>
+                        <div class="h-0.5 w-16 bg-gray-300"></div>
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="h-10 w-10 flex items-center justify-center bg-gray-300 text-white rounded-full text-lg font-bold">
+                                3</div>
+                            <p class="mt-2 text-gray-500">Configurar</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Upload de Dados -->
+                <section class="mt-8 bg-gray-50 p-8 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-gray-800">Upload de Dados</h2>
+                    <p class="text-gray-600">Carregue seus dados para análise e treinamento de modelos</p>
+                    <div class="mt-6 border-dashed border-2 border-gray-300 p-6 text-center rounded-lg bg-white">
+                        <div class="flex justify-center mb-4">
+                            <span class="text-blue-600 text-4xl">&#8682;</span>
+                        </div>
+                        <p class="text-gray-600">Arraste e solte um arquivo</p>
+                        <p class="text-gray-500 text-sm">ou</p>
+                        <button class="mt-2 bg-blue-600 text-white px-6 py-2 rounded-md">Selecionar Arquivo</button>
+                        <p class="text-gray-500 text-sm mt-2">Formatos suportados: .csv, .xlsx, .xls (max. 100MB)</p>
+                    </div>
+                    <div class="mt-6 bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold">Opções avançadas</h3>
+                        <div class="mt-4">
+                            <label class="block text-gray-700">Separador de colunas</label>
+                            <select class="w-full border border-gray-300 p-2 rounded-md">
+                                <option>Vírgula (,)</option>
+                                <option>Ponto e vírgula (;)</option>
+                                <option>Tabulação (\t)</option>
+                            </select>
+                        </div>
+                        <div class="mt-4">
+                            <label class="block text-gray-700">Encoding</label>
+                            <select class="w-full border border-gray-300 p-2 rounded-md">
+                                <option>UTF-8</option>
+                                <option>ISO-8859-1</option>
+                            </select>
+                        </div>
+                        <div class="mt-4">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span class="text-gray-700">Sim, meu arquivo tem cabeçalhos</span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+    </div>
+    </div>
+</body>
+
+</html>

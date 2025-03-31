@@ -1,0 +1,10 @@
+<div class="chart-container" [ngStyle]="{'height': (chartElement?.height || 300) * zoomLevel / 100 + 'px'}">
+    <div #chartContainer class="w-full h-full" [ngClass]="{'opacity-50': !chartData || chartData.length === 0}"></div>
+
+    <!-- Mensagem de dados insuficientes -->
+    <div *ngIf="!chartData || chartData.length === 0" class="absolute inset-0 flex items-center justify-center">
+        <div class="text-gray-500 bg-gray-100 px-4 py-2 rounded-md shadow">
+            Dados insuficientes para renderizar o gráfico
+        </div>
+    </div>
+</div>

@@ -1,0 +1,185 @@
+{
+    "reportName": "Relatório de Vendas Trimestral",
+    "author": "Sistema BI",
+    "createdAt": "2025-03-31T10:00:00",
+    "version": "1.0",
+    "dataSource": "assets/reports/data/sales-data.json",
+    "preferences": {
+        "defaultZoom": 100,
+        "defaultPageSize": "A4",
+        "defaultOrientation": "portrait",
+        "defaultFont": "Arial",
+        "exportFormats": [
+            "pdf",
+            "excel",
+            "csv",
+            "image"
+        ],
+        "enableSearch": true,
+        "enableAnnotations": true,
+        "template": "modern"
+    },
+    "parameters": [
+        {
+            "name": "startDate",
+            "label": "Data Início",
+            "type": "date",
+            "required": true,
+            "defaultValue": "2025-01-01"
+        },
+        {
+            "name": "endDate",
+            "label": "Data Fim",
+            "type": "date",
+            "required": true,
+            "defaultValue": "2025-03-31"
+        },
+        {
+            "name": "region",
+            "label": "Região",
+            "type": "select",
+            "options": [
+                {
+                    "value": "",
+                    "label": "Todas"
+                },
+                {
+                    "value": "sul",
+                    "label": "Sul"
+                },
+                {
+                    "value": "sudeste",
+                    "label": "Sudeste"
+                },
+                {
+                    "value": "centro-oeste",
+                    "label": "Centro-Oeste"
+                },
+                {
+                    "value": "norte",
+                    "label": "Norte"
+                },
+                {
+                    "value": "nordeste",
+                    "label": "Nordeste"
+                }
+            ]
+        }
+    ],
+    "pages": [
+        {
+            "name": "Capa",
+            "width": 800,
+            "height": 1100,
+            "margins": {
+                "top": 50,
+                "right": 50,
+                "bottom": 50,
+                "left": 50
+            },
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "RELATÓRIO DE VENDAS TRIMESTRAL",
+                    "fontSize": 24,
+                    "bold": true,
+                    "align": "center",
+                    "color": "#2c3e50",
+                    "style": {
+                        "marginTop": "30px",
+                        "marginBottom": "20px"
+                    }
+                },
+                {
+                    "type": "image",
+                    "url": "/assets/images/logo.png",
+                    "alt": "Logo da Empresa",
+                    "width": 200,
+                    "height": 200,
+                    "style": {
+                        "margin": "0 auto",
+                        "display": "block"
+                    }
+                },
+                {
+                    "type": "text",
+                    "content": "Primeiro Trimestre de 2025",
+                    "fontSize": 18,
+                    "align": "center",
+                    "color": "#34495e",
+                    "style": {
+                        "marginTop": "20px",
+                        "marginBottom": "100px"
+                    }
+                },
+                {
+                    "type": "text",
+                    "content": "CONFIDENCIAL",
+                    "fontSize": 12,
+                    "align": "center",
+                    "color": "#e74c3c",
+                    "style": {
+                        "marginTop": "150px"
+                    }
+                },
+                {
+                    "type": "text",
+                    "content": "Preparado por: Sistema BI",
+                    "fontSize": 10,
+                    "align": "center",
+                    "style": {
+                        "position": "absolute",
+                        "bottom": "50px",
+                        "left": "0",
+                        "right": "0"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Resumo Executivo",
+            "width": 800,
+            "height": 1100,
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "RESUMO EXECUTIVO",
+                    "fontSize": 18,
+                    "bold": true,
+                    "align": "center",
+                    "color": "#2c3e50",
+                    "style": {
+                        "marginTop": "30px",
+                        "marginBottom": "20px"
+                    }
+                },
+                {
+                    "type": "text",
+                    "content": "Este relatório apresenta uma análise detalhada das vendas do primeiro trimestre de 2025. Os dados demonstram um crescimento de 15% em comparação ao mesmo período do ano anterior, com destaque para a região Sul que superou as metas em 22%.",
+                    "fontSize": 12,
+                    "align": "justify",
+                    "style": {
+                        "marginBottom": "20px"
+                    }
+                },
+                {
+                    "type": "chart",
+                    "title": "Vendas por Região",
+                    "chartType": "pie",
+                    "dataSource": "salesByRegion",
+                    "height": 350,
+                    "xAxis": "region",
+                    "donutSize": "55%",
+                    "enableDataLabels": true,
+                    "theme": "light",
+                    "series": [
+                        {
+                            "dataKey": "value",
+                            "name": "Valor de Vendas"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

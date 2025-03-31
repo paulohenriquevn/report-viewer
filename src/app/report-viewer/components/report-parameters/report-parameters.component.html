@@ -1,0 +1,141 @@
+<div class="bg-white shadow-md rounded p-4 mb-4">
+    <div class="flex justify-between items-center cursor-pointer" (click)="toggleExpand()">
+        <h2 class="text-lg font-semibold">Parâmetros</h2>
+        <span>{{ isExpanded ? '▲' : '▼' }}</span>
+    </div>
+
+    <div *ngIf="isExpanded" class="mt-4">
+        <div *ngFor="let param of parameters" class="mb-4">
+            <ng-container [ngSwitch]="param.type">
+
+                <!-- Parâmetro de Texto -->
+                <ng-container *ngSwitchCase="'text'">
+                    <label [for]="'param-' + param.name" class="block text-sm font-medium text-gray-700 mb-1">
+                        {{ param.label || param.name }}
+                        <span *ngIf="param.required" class="text-red-500 ml-1">*</span>
+                    </label>
+
+                    <input type="text" [id]="'param-' + param
+              type=" text" [id]="'param-' + param.name" [name]="'param-' + param.name"
+                        [placeholder]="param.placeholder || ''" [disabled]="param.readOnly"
+                        [ngClass]="{'border-red-500': errors[param.name]}" [(ngModel)]="paramValues[param.name]"
+                        (input)="handleParamChange(param.name, $event.target.value)"
+                        class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </ng-container>
+
+                <!-- Parâmetro Numérico -->
+                <ng-container *ngSwitchCase="'number'">
+                    <label [for]="'param-' + param.name" class="block text-sm font-medium text-gray-700 mb-1">
+                        {{ param.label || param.name }}
+                        <span *ngIf="param.required" class="text-red-500 ml-1">*</span>
+                    </label>
+
+                    <input type="number" [id]="'param-' + param.name" [name]="'param-' + param.name"
+                        [min]="param.minValue" [max]="param.maxValue" [step]="param.step || 1"
+                        [disabled]="param.readOnly" [ngClass]="{'border-red-500': errors[param.name]}"
+                        [(ngModel)]="paramValues[param.name]"
+                        (input)="handleParamChange(param.name, $event.target.value)"
+                        class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </ng-container>
+
+                <!-- Parâmetro de Data -->
+                <ng-container *ngSwitchCase="'date'">
+                    <label [for]="'param-' + param.name" class="block text-sm font-medium text-gray-700 mb-1">
+                        {{ param.label || param.name }}
+                        <span *ngIf="param.required" class="text-red-500 ml-1">*</span>
+                    </label>
+
+                    <input type="date" [id]="'param-' + param.name" [name]="'param-' + param.name" [min]="param.minDate"
+                        [max]="param.maxDate" [disabled]="param.readOnly"
+                        [ngClass]="{'border-red-500': errors[param.name]}" [(ngModel)]="paramValues[param.name]"
+                        (input)="handleParamChange(param.name, $event.target.value)"
+                        class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </ng-container>
+
+                <!-- Parâmetro de Seleção -->
+                <ng-container *ngSwitchCase="'select'">
+                    <label [for]="'param-' + param.name" class="block text-sm font-medium text-gray-700 mb-1">
+                        {{ param.label || param.name }}
+                        <span *ngIf="param.required" class="text-red-500 ml-1">*</span>
+                    </label>
+
+                    <select [id]="'param-' + param.name" [name]="'param-' + param.name" [disabled]="param.readOnly"
+                        [ngClass]="{'border-red-500': errors[param.name]}" [(ngModel)]="paramValues[param.name]"
+                        (change)="handleParamChange(param.name, $event.target.value)"
+                        class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">Selecione...</option>
+                        <option *ngFor="let option of param.options" [value]="option.value">
+                            {{ option.label || option.value }}
+                        </option>
+                    </select>
+                </ng-container>
+
+                <!-- Parâmetro de Checkbox -->
+                <ng-container *ngSwitchCase="'checkbox'">
+                    <div class="flex items-center">
+                        <input type="checkbox" [id]="'param-' + param.name" [name]="'param-' + param.name"
+                            [disabled]="param.readOnly" [ngClass]="{'border-red-500': errors[param.name]}"
+                            [(ngModel)]="paramValues[param.name]"
+                            (change)="handleParamChange(param.name, $event.target.checked)"
+                            class="h-4 w-4 text-blue-600 border rounded focus:ring-blue-500" />
+                        <label [for]="'param-' + param.name" class="ml-2 block text-sm text-gray-700">
+                            {{ param.checkboxLabel || param.label || param.name }}
+                            <span *ngIf="param.required" class="text-red-500 ml-1">*</span>
+                        </label>
+                    </div>
+                </ng-container>
+
+                <!-- Parâmetro de Radio Button -->
+                <ng-container *ngSwitchCase="'radio'">
+                    <div>
+                        <span class="block text-sm font-medium text-gray-700 mb-1">
+                            {{ param.label || param.name }}
+                            <span *ngIf="param.required" class="text-red-500 ml-1">*</span>
+                        </span>
+
+                        <div class="mt-1 space-y-2">
+                            <div *ngFor="let option of param.options; let i = index" class="flex items-center">
+                                <input type="radio" [id]="'param-' + param.name + '-' + i"
+                                    [name]="'param-' + param.name" [value]="option.value" [disabled]="param.readOnly"
+                                    [ngClass]="{'border-red-500': errors[param.name]}"
+                                    [checked]="paramValues[param.name] === option.value"
+                                    (change)="handleParamChange(param.name, option.value)"
+                                    class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500" />
+                                <label [for]="'param-' + param.name + '-' + i" class="ml-2 block text-sm text-gray-700">
+                                    {{ option.label || option.value }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <!-- Tipo não suportado -->
+                <ng-container *ngSwitchDefault>
+                    <div class="text-red-500 text-sm">
+                        Tipo de parâmetro não suportado: {{ param.type }}
+                    </div>
+                </ng-container>
+            </ng-container>
+
+            <!-- Mensagem de erro -->
+            <div *ngIf="errors[param.name]" class="mt-1 text-sm text-red-500">
+                {{ errors[param.name] }}
+            </div>
+
+            <!-- Descrição do parâmetro -->
+            <div *ngIf="param.description" class="mt-1 text-xs text-gray-500">
+                {{ param.description }}
+            </div>
+        </div>
+
+        <!-- Botão de ação -->
+        <div class="flex justify-end mt-4">
+            <button (click)="applyParameters()" [disabled]="hasAnyError()" [ngClass]="{
+          'bg-blue-600 hover:bg-blue-700': !hasAnyError(),
+          'bg-gray-400 cursor-not-allowed': hasAnyError()
+        }" class="px-4 py-2 text-white rounded transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Aplicar Parâmetros
+            </button>
+        </div>
+    </div>
+</div>
