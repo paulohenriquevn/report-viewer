@@ -1,7 +1,8 @@
 import { Directive, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Directive({
-    selector: '[appZoom]'
+    selector: '[appZoom]',
+    standalone: true
 })
 export class ZoomDirective implements OnChanges {
     @Input() zoomLevel: number = 100;

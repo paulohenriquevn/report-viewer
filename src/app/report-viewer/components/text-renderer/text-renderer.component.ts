@@ -1,10 +1,12 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { ReportTextElement } from '../../models/report-element.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-text-renderer',
     templateUrl: './text-renderer.component.html',
-    styleUrls: ['./text-renderer.component.scss']
+    styleUrls: ['./text-renderer.component.scss'],
+    imports: [CommonModule]
 })
 export class TextRendererComponent implements OnChanges {
     @Input() textElement!: ReportTextElement;

@@ -18,7 +18,7 @@
                     <input type="text" [id]="'param-' + param.name" 
                     [name]="'param-' + param.name"
                     [placeholder]="param.placeholder || ''"
-                    [disabled]="param.readOnly"
+                    [disabled]="param.readOnly === true"
                     [(ngModel)]="paramValues[param.name]"
                     (input)="handleParamChange(param.name, $event.target.value)"
                     class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -32,8 +32,8 @@
                     </label>
 
                     <input type="number" [id]="'param-' + param.name" [name]="'param-' + param.name"
-                        [min]="param.minValue" [max]="param.maxValue" [step]="param.step || 1"
-                        [disabled]="param.readOnly" [ngClass]="{'border-red-500': errors[param.name]}"
+                        [min]="param.minValue  ?? null" [max]="param.maxValue ?? null" [step]="param.step || 1"
+                        [disabled]="param.readOnly === true" [ngClass]="{'border-red-500': errors[param.name]}"
                         [(ngModel)]="paramValues[param.name]"
                         (input)="handleParamChange(param.name, $event.target.value)"
                         class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -47,7 +47,7 @@
                     </label>
 
                     <input type="date" [id]="'param-' + param.name" [name]="'param-' + param.name" [min]="param.minDate"
-                        [max]="param.maxDate" [disabled]="param.readOnly"
+                        [max]="param.maxDate" [disabled]="param.readOnly === true"
                         [ngClass]="{'border-red-500': errors[param.name]}" [(ngModel)]="paramValues[param.name]"
                         (input)="handleParamChange(param.name, $event.target.value)"
                         class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -60,7 +60,7 @@
                         <span *ngIf="param.required" class="text-red-500 ml-1">*</span>
                     </label>
 
-                    <select [id]="'param-' + param.name" [name]="'param-' + param.name" [disabled]="param.readOnly"
+                    <select [id]="'param-' + param.name" [name]="'param-' + param.name" [disabled]="param.readOnly === true"
                         [ngClass]="{'border-red-500': errors[param.name]}" [(ngModel)]="paramValues[param.name]"
                         (change)="handleParamChange(param.name, $event.target.value)"
                         class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -75,7 +75,7 @@
                 <ng-container *ngSwitchCase="'checkbox'">
                     <div class="flex items-center">
                         <input type="checkbox" [id]="'param-' + param.name" [name]="'param-' + param.name"
-                            [disabled]="param.readOnly" [ngClass]="{'border-red-500': errors[param.name]}"
+                            [disabled]="param.readOnly === true" [ngClass]="{'border-red-500': errors[param.name]}"
                             [(ngModel)]="paramValues[param.name]"
                             (change)="handleParamChange(param.name, $event.target.checked)"
                             class="h-4 w-4 text-blue-600 border rounded focus:ring-blue-500" />
@@ -97,7 +97,7 @@
                         <div class="mt-1 space-y-2">
                             <div *ngFor="let option of param.options; let i = index" class="flex items-center">
                                 <input type="radio" [id]="'param-' + param.name + '-' + i"
-                                    [name]="'param-' + param.name" [value]="option.value" [disabled]="param.readOnly"
+                                    [name]="'param-' + param.name" [value]="option.value" [disabled]="param.readOnly === true"
                                     [ngClass]="{'border-red-500': errors[param.name]}"
                                     [checked]="paramValues[param.name] === option.value"
                                     (change)="handleParamChange(param.name, option.value)"

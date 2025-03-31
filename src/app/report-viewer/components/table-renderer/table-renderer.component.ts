@@ -1,10 +1,12 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ReportTableElement } from '../../models/report-element.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-table-renderer',
     templateUrl: './table-renderer.component.html',
-    styleUrls: ['./table-renderer.component.scss']
+    styleUrls: ['./table-renderer.component.scss'],
+    imports: [CommonModule]
 })
 export class TableRendererComponent implements OnChanges {
     @Input() tableElement!: ReportTableElement;

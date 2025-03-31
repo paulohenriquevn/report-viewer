@@ -1,11 +1,13 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { TemplateService } from '../../services/template.service';
 import { ReportTemplate } from '../../models/report-template.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-template-manager',
     templateUrl: './template-manager.component.html',
-    styleUrls: ['./template-manager.component.scss']
+    styleUrls: ['./template-manager.component.scss'],
+    imports: [CommonModule]
 })
 export class TemplateManagerComponent implements OnInit {
     @Input() selectedTemplate: string = '';

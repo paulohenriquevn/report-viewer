@@ -1,7 +1,8 @@
 import { Directive, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Directive({
-    selector: '[highlightSearch]'
+    selector: '[highlightSearch]',
+    standalone: true
 })
 export class HighlightSearchDirective implements OnChanges {
     @Input() searchTerm: string = '';
