@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
   error = '';
   
   // Caminho para o arquivo de configuração do relatório
-  reportConfigPath = './assets/reports/configs/nota-fiscal.json';
+  reportConfigPath = './assets/reports/configs/notas-fiscal.json';
   
   ngOnInit() {
     setTimeout(() => {

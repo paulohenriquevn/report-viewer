@@ -1,0 +1,687 @@
+{
+    "reportName": "Relação de Notas Fiscais Emitidas",
+    "author": "Sistema BI",
+    "createdAt": "2025-03-31T14:30:00",
+    "version": "1.0",
+    "dataSource": "./assets/reports/data/nfes-data.json",
+    "preferences": {
+        "defaultZoom": 100,
+        "defaultPageSize": "A4",
+        "defaultOrientation": "landscape",
+        "defaultFont": "Arial",
+        "exportFormats": [
+            "pdf",
+            "excel",
+            "csv",
+            "image"
+        ],
+        "enableSearch": true,
+        "template": "fiscal"
+    },
+    "parameters": [
+        {
+            "name": "dataInicial",
+            "label": "Data Inicial",
+            "type": "date",
+            "required": false,
+            "defaultValue": "2010-09-01"
+        },
+        {
+            "name": "dataFinal",
+            "label": "Data Final",
+            "type": "date",
+            "required": false,
+            "defaultValue": "2010-10-31"
+        },
+        {
+            "name": "destino",
+            "label": "Destino",
+            "type": "select",
+            "options": [
+                {
+                    "value": "",
+                    "label": "Todos"
+                },
+                {
+                    "value": "venda",
+                    "label": "Venda"
+                },
+                {
+                    "value": "compra",
+                    "label": "Compra"
+                },
+                {
+                    "value": "remessa",
+                    "label": "Remessa"
+                },
+                {
+                    "value": "outros",
+                    "label": "Outros"
+                }
+            ]
+        }
+    ],
+    "pages": [
+        {
+            "name": "Relação de Notas",
+            "width": 1100,
+            "height": 800,
+            "margins": {
+                "top": 20,
+                "right": 20,
+                "bottom": 20,
+                "left": 20
+            },
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "Filial Sem CGC x Sem Tamanho",
+                    "fontSize": 12,
+                    "bold": true,
+                    "align": "left",
+                    "color": "#000000",
+                    "style": {
+                        "marginBottom": "5px"
+                    }
+                },
+                {
+                    "type": "text",
+                    "content": "Relação de notas fiscais emitidas - Pluscitec",
+                    "fontSize": 10,
+                    "align": "left",
+                    "style": {
+                        "marginBottom": "10px"
+                    }
+                },
+                {
+                    "type": "text",
+                    "content": "NF/Ambos-P/Fora-Ambos-Modelo: 41 Nota Fiscal",
+                    "fontSize": 9,
+                    "align": "left",
+                    "style": {
+                        "marginBottom": "10px"
+                    }
+                },
+                {
+                    "type": "table",
+                    "dataSource": "cabecalhoTabela",
+                    "showHeader": true,
+                    "fontSize": 8,
+                    "headerFontSize": 8,
+                    "headerStyle": {
+                        "backgroundColor": "#f0f0f0",
+                        "fontWeight": "bold"
+                    },
+                    "style": {
+                        "width": "100%",
+                        "marginBottom": "10px"
+                    },
+                    "columns": [
+                        {
+                            "field": "nfNota",
+                            "header": "NF Nota",
+                            "width": "6%"
+                        },
+                        {
+                            "field": "cfop",
+                            "header": "CFOP CFOP2",
+                            "width": "8%"
+                        },
+                        {
+                            "field": "dtEmissao",
+                            "header": "Dt Emissão",
+                            "width": "8%"
+                        },
+                        {
+                            "field": "cnpjCpf",
+                            "header": "CNPJ / CPF",
+                            "width": "12%"
+                        },
+                        {
+                            "field": "credor",
+                            "header": "Credor",
+                            "width": "20%"
+                        },
+                        {
+                            "field": "vlrMerc",
+                            "header": "Vlr. Merc.",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrICMS",
+                            "header": "Vlr. ICMS",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "icmsSubst",
+                            "header": "ICMS Subst.",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrIPI",
+                            "header": "Vlr. IPI",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrLiquido",
+                            "header": "Vlr. Líquido",
+                            "width": "10%",
+                            "format": "currency",
+                            "align": "right"
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "dataSource": "notasVenda",
+                    "title": "Destino: Venda",
+                    "showHeader": false,
+                    "fontSize": 8,
+                    "zebraStripe": true,
+                    "style": {
+                        "width": "100%",
+                        "marginBottom": "10px"
+                    },
+                    "columns": [
+                        {
+                            "field": "nfNota",
+                            "width": "6%"
+                        },
+                        {
+                            "field": "cfop",
+                            "width": "8%"
+                        },
+                        {
+                            "field": "dtEmissao",
+                            "width": "8%"
+                        },
+                        {
+                            "field": "cnpjCpf",
+                            "width": "12%"
+                        },
+                        {
+                            "field": "credor",
+                            "width": "20%"
+                        },
+                        {
+                            "field": "vlrMerc",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrICMS",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "icmsSubst",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrIPI",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrLiquido",
+                            "width": "10%",
+                            "format": "currency",
+                            "align": "right"
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "dataSource": "subtotalVenda",
+                    "showHeader": false,
+                    "fontSize": 8,
+                    "style": {
+                        "width": "100%",
+                        "marginBottom": "15px",
+                        "backgroundColor": "#f0f0f0"
+                    },
+                    "columns": [
+                        {
+                            "field": "label",
+                            "width": "54%"
+                        },
+                        {
+                            "field": "vlrMerc",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrICMS",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "icmsSubst",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrIPI",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrLiquido",
+                            "width": "10%",
+                            "format": "currency",
+                            "align": "right"
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "dataSource": "notasCompra",
+                    "title": "Destino: Compra",
+                    "showHeader": false,
+                    "fontSize": 8,
+                    "zebraStripe": true,
+                    "style": {
+                        "width": "100%",
+                        "marginBottom": "10px"
+                    },
+                    "columns": [
+                        {
+                            "field": "nfNota",
+                            "width": "6%"
+                        },
+                        {
+                            "field": "cfop",
+                            "width": "8%"
+                        },
+                        {
+                            "field": "dtEmissao",
+                            "width": "8%"
+                        },
+                        {
+                            "field": "cnpjCpf",
+                            "width": "12%"
+                        },
+                        {
+                            "field": "credor",
+                            "width": "20%"
+                        },
+                        {
+                            "field": "vlrMerc",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrICMS",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "icmsSubst",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrIPI",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrLiquido",
+                            "width": "10%",
+                            "format": "currency",
+                            "align": "right"
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "dataSource": "subtotalCompra",
+                    "showHeader": false,
+                    "fontSize": 8,
+                    "style": {
+                        "width": "100%",
+                        "marginBottom": "15px",
+                        "backgroundColor": "#f0f0f0"
+                    },
+                    "columns": [
+                        {
+                            "field": "label",
+                            "width": "54%"
+                        },
+                        {
+                            "field": "vlrMerc",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrICMS",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "icmsSubst",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrIPI",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrLiquido",
+                            "width": "10%",
+                            "format": "currency",
+                            "align": "right"
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "dataSource": "notasRemessa",
+                    "title": "Destino: Remessa",
+                    "showHeader": false,
+                    "fontSize": 8,
+                    "zebraStripe": true,
+                    "style": {
+                        "width": "100%",
+                        "marginBottom": "10px"
+                    },
+                    "columns": [
+                        {
+                            "field": "nfNota",
+                            "width": "6%"
+                        },
+                        {
+                            "field": "cfop",
+                            "width": "8%"
+                        },
+                        {
+                            "field": "dtEmissao",
+                            "width": "8%"
+                        },
+                        {
+                            "field": "cnpjCpf",
+                            "width": "12%"
+                        },
+                        {
+                            "field": "credor",
+                            "width": "20%"
+                        },
+                        {
+                            "field": "vlrMerc",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrICMS",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "icmsSubst",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrIPI",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrLiquido",
+                            "width": "10%",
+                            "format": "currency",
+                            "align": "right"
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "dataSource": "subtotalRemessa",
+                    "showHeader": false,
+                    "fontSize": 8,
+                    "style": {
+                        "width": "100%",
+                        "marginBottom": "15px",
+                        "backgroundColor": "#f0f0f0"
+                    },
+                    "columns": [
+                        {
+                            "field": "label",
+                            "width": "54%"
+                        },
+                        {
+                            "field": "vlrMerc",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrICMS",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "icmsSubst",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrIPI",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrLiquido",
+                            "width": "10%",
+                            "format": "currency",
+                            "align": "right"
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "dataSource": "notasOutros",
+                    "title": "Destino: Outros",
+                    "showHeader": false,
+                    "fontSize": 8,
+                    "zebraStripe": true,
+                    "style": {
+                        "width": "100%",
+                        "marginBottom": "10px"
+                    },
+                    "columns": [
+                        {
+                            "field": "nfNota",
+                            "width": "6%"
+                        },
+                        {
+                            "field": "cfop",
+                            "width": "8%"
+                        },
+                        {
+                            "field": "dtEmissao",
+                            "width": "8%"
+                        },
+                        {
+                            "field": "cnpjCpf",
+                            "width": "12%"
+                        },
+                        {
+                            "field": "credor",
+                            "width": "20%"
+                        },
+                        {
+                            "field": "vlrMerc",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrICMS",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "icmsSubst",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrIPI",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrLiquido",
+                            "width": "10%",
+                            "format": "currency",
+                            "align": "right"
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "dataSource": "subtotalOutros",
+                    "showHeader": false,
+                    "fontSize": 8,
+                    "style": {
+                        "width": "100%",
+                        "marginBottom": "15px",
+                        "backgroundColor": "#f0f0f0"
+                    },
+                    "columns": [
+                        {
+                            "field": "label",
+                            "width": "54%"
+                        },
+                        {
+                            "field": "vlrMerc",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrICMS",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "icmsSubst",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrIPI",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrLiquido",
+                            "width": "10%",
+                            "format": "currency",
+                            "align": "right"
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "dataSource": "totalGeral",
+                    "showHeader": false,
+                    "fontSize": 8,
+                    "style": {
+                        "width": "100%",
+                        "marginBottom": "15px",
+                        "backgroundColor": "#e0e0ff",
+                        "fontWeight": "bold"
+                    },
+                    "columns": [
+                        {
+                            "field": "label",
+                            "width": "54%"
+                        },
+                        {
+                            "field": "vlrMerc",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrICMS",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "icmsSubst",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrIPI",
+                            "width": "8%",
+                            "format": "currency",
+                            "align": "right"
+                        },
+                        {
+                            "field": "vlrLiquido",
+                            "width": "10%",
+                            "format": "currency",
+                            "align": "right"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Relatório gerado pelo BI Report Viewer",
+                    "fontSize": 8,
+                    "align": "right",
+                    "color": "#666666",
+                    "style": {
+                        "marginTop": "20px"
+                    }
+                }
+            ]
+        }
+    ]
+}

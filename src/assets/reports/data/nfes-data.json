@@ -1,0 +1,256 @@
+{
+    "cabecalhoTabela": [
+      {
+        "nfNota": "NF Nota",
+        "cfop": "CFOP CFOP2",
+        "dtEmissao": "Dt Emissão",
+        "cnpjCpf": "CNPJ / CPF",
+        "credor": "Credor",
+        "vlrMerc": "Vlr. Merc.",
+        "vlrICMS": "Vlr. ICMS",
+        "icmsSubst": "ICMS Subst.",
+        "vlrIPI": "Vlr. IPI",
+        "vlrLiquido": "Vlr. Líquido"
+      }
+    ],
+    "notasVenda": [
+      {
+        "nfNota": "000054",
+        "cfop": "51.01",
+        "dtEmissao": "08/10/2010",
+        "cnpjCpf": "343.430.116/60",
+        "credor": "Caneta Rebelo",
+        "vlrMerc": 20.00,
+        "vlrICMS": 0.00,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 20.00
+      }
+    ],
+    "subtotalVenda": [
+      {
+        "label": "SubTotal",
+        "vlrMerc": 20.00,
+        "vlrICMS": 0.00,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 20.00
+      }
+    ],
+    "notasCompra": [
+      {
+        "nfNota": "000053",
+        "cfop": "41.01",
+        "dtEmissao": "08/10/2010",
+        "cnpjCpf": "-/-",
+        "credor": "Preenchedor Anexos Ltda",
+        "vlrMerc": 0.00,
+        "vlrICMS": 0.00,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 150.00
+      }
+    ],
+    "subtotalCompra": [
+      {
+        "label": "SubTotal",
+        "vlrMerc": 0.00,
+        "vlrICMS": 0.00,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 150.00
+      }
+    ],
+    "notasRemessa": [
+      {
+        "nfNota": "000033",
+        "cfop": "21.51",
+        "dtEmissao": "20/09/2010",
+        "cnpjCpf": "-/-",
+        "credor": "Accent LTDA",
+        "vlrMerc": 21.66,
+        "vlrICMS": 3.90,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 21.66
+      }
+    ],
+    "subtotalRemessa": [
+      {
+        "label": "SubTotal",
+        "vlrMerc": 21.66,
+        "vlrICMS": 3.90,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 21.66
+      }
+    ],
+    "notasOutros": [
+      {
+        "nfNota": "000031",
+        "cfop": "51.01",
+        "dtEmissao": "14/09/2010",
+        "cnpjCpf": "-",
+        "credor": "Diego Maradona",
+        "vlrMerc": 290.00,
+        "vlrICMS": 0.00,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 290.00
+      },
+      {
+        "nfNota": "000035",
+        "cfop": "51.01",
+        "dtEmissao": "16/09/2010",
+        "cnpjCpf": "318.661.340.1",
+        "credor": "Paulo da Silva",
+        "vlrMerc": 290.00,
+        "vlrICMS": 49.80,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 290.00
+      },
+      {
+        "nfNota": "000036",
+        "cfop": "51.01",
+        "dtEmissao": "20/09/2010",
+        "cnpjCpf": "05.806.241/0001-40",
+        "credor": "Julio Cezar CFPTF",
+        "vlrMerc": 67.50,
+        "vlrICMS": 5.70,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 67.50
+      },
+      {
+        "nfNota": "000038",
+        "cfop": "51.01",
+        "dtEmissao": "21/09/2010",
+        "cnpjCpf": "318.661.340.1",
+        "credor": "Jose Tomas Cardoso",
+        "vlrMerc": 290.00,
+        "vlrICMS": 49.80,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 290.00
+      },
+      {
+        "nfNota": "000040",
+        "cfop": "51.01",
+        "dtEmissao": "22/09/2010",
+        "cnpjCpf": "-",
+        "credor": "Accent LTDA ME",
+        "vlrMerc": 43.00,
+        "vlrICMS": 0.00,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 43.00
+      },
+      {
+        "nfNota": "000046",
+        "cfop": "51.01",
+        "dtEmissao": "23/09/2010",
+        "cnpjCpf": "999.999.999-99",
+        "credor": "Concurseiro",
+        "vlrMerc": 0.00,
+        "vlrICMS": 0.00,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 6.50
+      },
+      {
+        "nfNota": "000041",
+        "cfop": "51.01",
+        "dtEmissao": "23/09/2010",
+        "cnpjCpf": "999.999.999-99",
+        "credor": "Concurseiro",
+        "vlrMerc": 0.00,
+        "vlrICMS": 0.00,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 270.00
+      },
+      {
+        "nfNota": "000042",
+        "cfop": "51.01",
+        "dtEmissao": "23/09/2010",
+        "cnpjCpf": "999.999.999-99",
+        "credor": "Concurseiro",
+        "vlrMerc": 120.00,
+        "vlrICMS": 19.44,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 120.00
+      },
+      {
+        "nfNota": "000044",
+        "cfop": "51.01",
+        "dtEmissao": "23/09/2010",
+        "cnpjCpf": "999.999.999-99",
+        "credor": "Concurseiro",
+        "vlrMerc": 30.00,
+        "vlrICMS": 4.86,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 27.00
+      },
+      {
+        "nfNota": "000045",
+        "cfop": "51.01",
+        "dtEmissao": "23/09/2010",
+        "cnpjCpf": "999.999.999-99",
+        "credor": "Concurseiro",
+        "vlrMerc": 100.00,
+        "vlrICMS": 0.00,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 90.00
+      },
+      {
+        "nfNota": "000046",
+        "cfop": "51.01",
+        "dtEmissao": "23/09/2010",
+        "cnpjCpf": "999.999.999-99",
+        "credor": "Concurseiro",
+        "vlrMerc": 0.00,
+        "vlrICMS": 0.00,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 0.00
+      },
+      {
+        "nfNota": "000047",
+        "cfop": "51.01",
+        "dtEmissao": "23/09/2010",
+        "cnpjCpf": "999.999.999-99",
+        "credor": "Concurseiro",
+        "vlrMerc": 0.00,
+        "vlrICMS": 0.00,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 0.00
+      },
+      {
+        "nfNota": "000048",
+        "cfop": "51.01",
+        "dtEmissao": "23/09/2010",
+        "cnpjCpf": "999.999.999-99",
+        "credor": "Concurseiro",
+        "vlrMerc": 3242.50,
+        "vlrICMS": 574.70,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 3242.75
+      }
+    ],
+    "subtotalOutros": [
+      {
+        "label": "SubTotal",
+        "vlrMerc": 4473.00,
+        "vlrICMS": 654.30,
+        "icmsSubst": 0.00,
+        "vlrIPI": 0.00,
+        "vlrLiquido": 4646.75
+      }
+    ]
+  }
