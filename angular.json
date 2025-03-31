@@ -17,6 +17,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "aot": true,
+            "optimization": true,
             "outputPath": "dist/analisa-ai",
             "index": "src/index.html",
             "browser": "src/main.ts",

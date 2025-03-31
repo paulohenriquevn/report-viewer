@@ -21,8 +21,15 @@ export class ReportService {
      * @param configPath Caminho para o arquivo de configuração
      * @returns Promise com a configuração do relatório
      */
-    async loadReportConfig(configPath: string): Promise<ReportConfig> {
-        return firstValueFrom(this.http.get<ReportConfig>(configPath));
+    loadReportConfig(configPath: string): Promise<ReportConfig> {
+        return firstValueFrom(this.http.get<ReportConfig>(configPath)).then(config => {
+            // Ensure default values
+            return {
+                ...config,
+                parameters: config.parameters || [],
+                pages: config.pages || []
+            };
+        });
     }
 
     /**

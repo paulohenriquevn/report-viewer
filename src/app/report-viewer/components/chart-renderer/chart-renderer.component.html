@@ -1,4 +1,4 @@
-<div class="chart-container" [ngStyle]="{'height': (chartElement?.height || 300) * zoomLevel / 100 + 'px'}">
+<div class="chart-container" [ngStyle]="{'height': ((chartElement && chartElement.height) || 300) * zoomLevel / 100 + 'px'}">
     <div #chartContainer class="w-full h-full" [ngClass]="{'opacity-50': !chartData || chartData.length === 0}"></div>
 
     <!-- Mensagem de dados insuficientes -->
