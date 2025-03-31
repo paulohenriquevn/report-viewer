@@ -2,13 +2,81 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>AnalisaJá</title>
+  <title>BI Report Viewer</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Pré-inicialização -->
+  <script>
+    // Garantir que os logs funcionem antes do carregamento do Angular
+    console.log = (function(originalConsoleLog) {
+      return function() {
+        // Criar um log visível no DOM
+        var args = Array.prototype.slice.call(arguments);
+        var logMsg = args.map(function(arg) {
+          return typeof arg === 'object' ? JSON.stringify(arg) : arg;
+        }).join(' ');
+        
+        // Adicionar mensagem ao DOM
+        var logDiv = document.getElementById('console-log-output');
+        if (!logDiv) {
+          logDiv = document.createElement('div');
+          logDiv.id = 'console-log-output';
+          logDiv.style.position = 'fixed';
+          logDiv.style.bottom = '0';
+          logDiv.style.left = '0';
+          logDiv.style.right = '0';
+          logDiv.style.maxHeight = '200px';
+          logDiv.style.overflow = 'auto';
+          logDiv.style.backgroundColor = 'rgba(0,0,0,0.8)';
+          logDiv.style.color = 'lime';
+          logDiv.style.fontFamily = 'monospace';
+          logDiv.style.padding = '10px';
+          logDiv.style.zIndex = '9999';
+          document.body.appendChild(logDiv);
+        }
+        
+        var p = document.createElement('p');
+        p.style.margin = '2px 0';
+        p.textContent = '> ' + logMsg;
+        logDiv.appendChild(p);
+        logDiv.scrollTop = logDiv.scrollHeight;
+        
+        // Chamar o console.log original
+        originalConsoleLog.apply(console, arguments);
+      };
+    })(console.log);
+    
+    // Registrar mensagem inicial
+    console.log('Log visual inicializado - ' + new Date().toISOString());
+    
+    // Interceptar erros
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.log('❌ ERRO: ' + message + ' (linha ' + lineno + ')');
+      return false;
+    };
+    
+    console.log('HTML carregado, aguardando Angular...');
+  </script>
 </head>
-<body class="bg-background text-foreground font-sans">
+<body class="bg-gray-100 text-gray-800 font-sans">
+  <div class="p-4 text-center bg-white shadow-md">
+    <h1 class="text-2xl font-bold">BI Report Viewer</h1>
+    <p>Inicializando aplicação...</p>
+  </div>
+  
   <app-root></app-root>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('✅ DOMContentLoaded ativado');
+    });
+    
+    window.onload = function() {
+      console.log('✅ Window onload ativado');
+    };
+  </script>
 </body>
 </html>

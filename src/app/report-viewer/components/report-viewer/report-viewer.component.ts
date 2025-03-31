@@ -61,7 +61,67 @@ export class ReportViewerComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.loadReportConfig();
+        console.log('ReportViewerComponent: ngOnInit - Iniciando carregamento...');
+        console.log('ReportViewerComponent: Caminho do config:', this.reportConfigPath);
+        
+        // Solução temporária: criar um relatório estático
+        this.createStaticReport();
+        
+        // Método original (desativado temporariamente)
+        // setTimeout(() => this.loadReportConfig(), 100);
+    }
+    
+    // Cria um relatório estático para demonstração
+    createStaticReport(): void {
+        this.isLoading = true;
+        console.log('⚡ ReportViewerComponent.createStaticReport: Criando relatório estático');
+        
+        // Definir dados estáticos mais simples
+        this.reportData = {
+            "simpleData": [
+                { "name": "Item 1", "value": 100 },
+                { "name": "Item 2", "value": 200 },
+                { "name": "Item 3", "value": 300 }
+            ]
+        };
+        
+        // Definir configuração estática minimalista
+        this.reportConfig = {
+            reportName: "Relatório Básico de Demonstração",
+            author: "Sistema BI",
+            version: "1.0",
+            dataSource: "static",
+            pages: [
+                {
+                    name: "Página Única",
+                    elements: [
+                        {
+                            type: "text",
+                            content: "RELATÓRIO BÁSICO",
+                            fontSize: 24,
+                            bold: true,
+                            align: "center",
+                            color: "#2c3e50"
+                        },
+                        {
+                            type: "text",
+                            content: "Este é um relatório básico para testar o componente.",
+                            fontSize: 14,
+                            align: "center"
+                        }
+                    ]
+                }
+            ]
+        };
+        
+        console.log('ReportViewerComponent: Relatório estático criado');
+        console.log('ReportViewerComponent: reportConfig =', this.reportConfig);
+        console.log('ReportViewerComponent: reportData =', this.reportData);
+        
+        // Garantir que os logs apareçam
+        console.log('✅ ReportViewerComponent: Relatório estático criado com sucesso!');
+        
+        this.isLoading = false;
     }
 
     async loadReportConfig(): Promise<void> {
@@ -216,9 +276,23 @@ export class ReportViewerComponent implements OnInit {
 
     // Método para obter dados da fonte
     getElementData(element: ConfigReportElement): any[] {
-        if ('dataSource' in element) {
-            return this.reportData[element['dataSource']] || [];
+        console.log('getElementData - Element:', element);
+        console.log('getElementData - ReportData:', this.reportData);
+        
+        if ('dataSource' in element && element.dataSource) {
+            const dataSourceName = element.dataSource;
+            console.log('getElementData - DataSource Name:', dataSourceName);
+            
+            if (this.reportData && this.reportData[dataSourceName]) {
+                console.log('getElementData - Dados encontrados:', this.reportData[dataSourceName]);
+                return this.reportData[dataSourceName];
+            } else {
+                console.warn('getElementData - Dados NÃO encontrados para:', dataSourceName);
+                return [];
+            }
         }
+        
+        console.warn('getElementData - Sem dataSource no elemento');
         return [];
     }
 }
