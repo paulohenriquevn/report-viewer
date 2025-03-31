@@ -103,7 +103,7 @@
                 },
                 {
                     "type": "table",
-                    "dataSource": "cabecalhoTabela",
+                    "dataSource": "dados",
                     "showHeader": true,
                     "fontSize": 9,
                     "headerFontSize": 9,
@@ -115,6 +115,7 @@
                         "width": "100%",
                         "marginBottom": "10px"
                     },
+                    "zebraStripe": false,
                     "columns": [
                         {
                             "field": "conta",
@@ -131,180 +132,6 @@
                         {
                             "field": "valorTotal",
                             "header": "TOTAL",
-                            "width": "20%",
-                            "format": "currency",
-                            "align": "right"
-                        }
-                    ]
-                },
-                {
-                    "type": "table",
-                    "dataSource": "receitaBruta",
-                    "showHeader": false,
-                    "fontSize": 9,
-                    "style": {
-                        "width": "100%",
-                        "marginBottom": "5px"
-                    },
-                    "zebraStripe": false,
-                    "columns": [
-                        {
-                            "field": "conta",
-                            "width": "60%"
-                        },
-                        {
-                            "field": "valorMensal",
-                            "width": "20%",
-                            "format": "currency",
-                            "align": "right"
-                        },
-                        {
-                            "field": "valorTotal",
-                            "width": "20%",
-                            "format": "currency",
-                            "align": "right"
-                        }
-                    ]
-                },
-                {
-                    "type": "table",
-                    "dataSource": "combustiveis",
-                    "showHeader": false,
-                    "fontSize": 9,
-                    "style": {
-                        "width": "100%",
-                        "marginBottom": "5px"
-                    },
-                    "zebraStripe": false,
-                    "columns": [
-                        {
-                            "field": "conta",
-                            "width": "60%"
-                        },
-                        {
-                            "field": "valorMensal",
-                            "width": "20%",
-                            "format": "currency",
-                            "align": "right"
-                        },
-                        {
-                            "field": "valorTotal",
-                            "width": "20%",
-                            "format": "currency",
-                            "align": "right"
-                        }
-                    ]
-                },
-                {
-                    "type": "table",
-                    "dataSource": "produtos",
-                    "showHeader": false,
-                    "fontSize": 9,
-                    "style": {
-                        "width": "100%",
-                        "marginBottom": "5px"
-                    },
-                    "zebraStripe": false,
-                    "columns": [
-                        {
-                            "field": "conta",
-                            "width": "60%"
-                        },
-                        {
-                            "field": "valorMensal",
-                            "width": "20%",
-                            "format": "currency",
-                            "align": "right"
-                        },
-                        {
-                            "field": "valorTotal",
-                            "width": "20%",
-                            "format": "currency",
-                            "align": "right"
-                        }
-                    ]
-                },
-                {
-                    "type": "table",
-                    "dataSource": "servicos",
-                    "showHeader": false,
-                    "fontSize": 9,
-                    "style": {
-                        "width": "100%",
-                        "marginBottom": "5px"
-                    },
-                    "zebraStripe": false,
-                    "columns": [
-                        {
-                            "field": "conta",
-                            "width": "60%"
-                        },
-                        {
-                            "field": "valorMensal",
-                            "width": "20%",
-                            "format": "currency",
-                            "align": "right"
-                        },
-                        {
-                            "field": "valorTotal",
-                            "width": "20%",
-                            "format": "currency",
-                            "align": "right"
-                        }
-                    ]
-                },
-                {
-                    "type": "table",
-                    "dataSource": "receitasOperacionais",
-                    "showHeader": false,
-                    "fontSize": 9,
-                    "style": {
-                        "width": "100%",
-                        "marginBottom": "5px"
-                    },
-                    "zebraStripe": false,
-                    "columns": [
-                        {
-                            "field": "conta",
-                            "width": "60%"
-                        },
-                        {
-                            "field": "valorMensal",
-                            "width": "20%",
-                            "format": "currency",
-                            "align": "right"
-                        },
-                        {
-                            "field": "valorTotal",
-                            "width": "20%",
-                            "format": "currency",
-                            "align": "right"
-                        }
-                    ]
-                },
-                {
-                    "type": "table",
-                    "dataSource": "descontosAcrescimos",
-                    "showHeader": false,
-                    "fontSize": 9,
-                    "style": {
-                        "width": "100%",
-                        "marginBottom": "5px"
-                    },
-                    "zebraStripe": false,
-                    "columns": [
-                        {
-                            "field": "conta",
-                            "width": "60%"
-                        },
-                        {
-                            "field": "valorMensal",
-                            "width": "20%",
-                            "format": "currency",
-                            "align": "right"
-                        },
-                        {
-                            "field": "valorTotal",
                             "width": "20%",
                             "format": "currency",
                             "align": "right"

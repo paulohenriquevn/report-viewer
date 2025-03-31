@@ -6,14 +6,12 @@
             "valorTotal": ""
         }
     ],
-    "receitaBruta": [
+    "dados": [
         {
             "conta": "A. RECEITA BRUTA",
             "valorMensal": 2017299.64,
             "valorTotal": 2017299.64
-        }
-    ],
-    "combustiveis": [
+        },
         {
             "conta": "    1.COMBUSTIVEIS",
             "valorMensal": 1964192.38,
@@ -43,9 +41,7 @@
             "conta": "        1.5 Ó DIE B S500 ORIGINAL",
             "valorMensal": 129287.09,
             "valorTotal": 129287.09
-        }
-    ],
-    "produtos": [
+        },
         {
             "conta": "    2.PRODUTOS",
             "valorMensal": 36772.77,
@@ -85,9 +81,7 @@
             "conta": "        2.7 OUTROS",
             "valorMensal": 1364.77,
             "valorTotal": 1364.77
-        }
-    ],
-    "servicos": [
+        },
         {
             "conta": "    3.SERVIÇOS",
             "valorMensal": 64.00,
@@ -97,9 +91,7 @@
             "conta": "        3.1 MÃO DE OBRA",
             "valorMensal": 64.00,
             "valorTotal": 64.00
-        }
-    ],
-    "receitasOperacionais": [
+        },
         {
             "conta": "    4.RECEITAS OPERACIONAIS",
             "valorMensal": 18778.20,
@@ -154,9 +146,7 @@
             "conta": "        4.10 RECARGA CONECTCAR",
             "valorMensal": 454.80,
             "valorTotal": 454.80
-        }
-    ],
-    "descontosAcrescimos": [
+        },
         {
             "conta": "    5.DESCONTOS/ACRÉSCIMOS",
             "valorMensal": -2458.71,
