@@ -1,4 +1,8 @@
-export interface ReportTextElement {
+export interface ReportBaseElement {
+    type: 'text' | 'table' | 'chart' | 'image' | 'pageBreak';
+}
+
+export interface ReportTextElement extends ReportBaseElement {
     type: 'text';
     content: string;
     fontSize?: number;
@@ -10,7 +14,7 @@ export interface ReportTextElement {
     style?: any;
 }
 
-export interface ReportTableElement {
+export interface ReportTableElement extends ReportBaseElement {
     type: 'table';
     dataSource: string;
     showHeader?: boolean;
@@ -28,7 +32,28 @@ export interface ReportTableElement {
     }[];
 }
 
-export interface ReportImageElement {
+export interface ReportChartElement extends ReportBaseElement {
+    type: 'chart';
+    dataSource: string;
+    chartType: 'bar' | 'line' | 'pie' | 'area' | 'scatter';
+    title?: string;
+    xAxis: string;
+    series: any[];
+    height?: number;
+    width?: number;
+    fontFamily?: string;
+    titleFontSize?: number;
+    xAxisLabel?: string;
+    yAxisLabel?: string;
+    horizontal?: boolean;
+    columnWidth?: string;
+    donutSize?: string;
+    curve?: string;
+    lineWidth?: number;
+    markerSize?: number;
+}
+
+export interface ReportImageElement extends ReportBaseElement {
     type: 'image';
     url: string;
     alt?: string;
@@ -37,3 +62,14 @@ export interface ReportImageElement {
     caption?: string;
     style?: any;
 }
+
+export interface ReportPageBreakElement extends ReportBaseElement {
+    type: 'pageBreak';
+}
+
+export type ReportElement = 
+    | ReportTextElement 
+    | ReportTableElement 
+    | ReportChartElement 
+    | ReportImageElement 
+    | ReportPageBreakElement;

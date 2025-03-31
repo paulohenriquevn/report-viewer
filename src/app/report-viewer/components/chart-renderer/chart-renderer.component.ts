@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import ApexCharts from 'apexcharts';
-import { ReportChartElement } from '../../models/report-chart-element.model';
+import { ReportChartElement } from '../../models/report-element.model';
+import { ReportElement as ConfigReportElement } from '../../models/report-config.model';
 
 @Component({
     selector: 'app-chart-renderer',
@@ -11,7 +12,7 @@ import { ReportChartElement } from '../../models/report-chart-element.model';
     imports: [CommonModule]
 })
 export class ChartRendererComponent implements OnChanges, AfterViewInit {
-    @Input() chartElement!: ReportChartElement;
+    @Input() chartElement!: ReportChartElement | ConfigReportElement;
     @Input() chartData: any[] = [];
     @Input() zoomLevel: number = 100;
 
@@ -164,7 +165,7 @@ export class ChartRendererComponent implements OnChanges, AfterViewInit {
             }
         };
 
-        options.series = this.chartElement.series.map(serie => ({
+        options.series = this.chartElement.series.map((serie: any) => ({
             name: serie.name,
             data: this.chartData.map(item => item[serie.dataKey])
         }));
@@ -195,7 +196,7 @@ export class ChartRendererComponent implements OnChanges, AfterViewInit {
             }
         };
 
-        options.series = this.chartElement.series.map(serie => ({
+        options.series = this.chartElement.series.map((serie: any) => ({
             name: serie.name,
             data: this.chartData.map(item => item[serie.dataKey])
         }));
@@ -227,7 +228,7 @@ export class ChartRendererComponent implements OnChanges, AfterViewInit {
             }
         };
 
-        options.series = this.chartElement.series.map(serie => ({
+        options.series = this.chartElement.series.map((serie: any) => ({
             name: serie.name,
             data: this.chartData.map(item => item[serie.dataKey])
         }));
@@ -297,10 +298,10 @@ export class ChartRendererComponent implements OnChanges, AfterViewInit {
 
     private getChartColors(): string[] {
         // Usa cores definidas no elemento do gráfico, se disponíveis
-        if (this.chartElement.series && this.chartElement.series.some(series => series.color)) {
+        if (this.chartElement.series && this.chartElement.series.some((series: any) => series.color)) {
             return this.chartElement.series
-                .filter(series => series.color !== undefined)
-                .map(series => series.color as string);
+                .filter((series: any) => series.color !== undefined)
+                .map((series: any) => series.color as string);
         }
 
         // Caso contrário, usa cores padrão

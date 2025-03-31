@@ -7,24 +7,30 @@ import { CommonModule } from '@angular/common';
     selector: 'app-template-manager',
     templateUrl: './template-manager.component.html',
     styleUrls: ['./template-manager.component.scss'],
+    standalone: true,
     imports: [CommonModule]
 })
 export class TemplateManagerComponent implements OnInit {
     @Input() selectedTemplate: string = '';
+    @Input() templates: { id: string, name: string, description?: string }[] = [];
     @Output() templateSelected = new EventEmitter<string>();
 
-    templates: { id: string, name: string, description: string }[] = [];
+    localTemplates: { id: string, name: string, description?: string }[] = [];
     isExpanded: boolean = false;
 
     constructor(private templateService: TemplateService) { }
 
     ngOnInit(): void {
-        this.loadTemplates();
+        if (this.templates && this.templates.length > 0) {
+            this.localTemplates = [...this.templates];
+        } else {
+            this.loadTemplates();
+        }
     }
 
     async loadTemplates(): Promise<void> {
         try {
-            this.templates = await this.templateService.getTemplatesList();
+            this.localTemplates = await this.templateService.getTemplatesList();
         } catch (err) {
             console.error('Erro ao carregar templates:', err);
         }
@@ -41,7 +47,7 @@ export class TemplateManagerComponent implements OnInit {
     }
 
     getSelectedTemplateName(): string {
-        const template = this.templates.find(t => t.id === this.selectedTemplate);
+        const template = this.localTemplates.find(t => t.id === this.selectedTemplate);
         return template ? template.name : 'Padrão';
     }
 }

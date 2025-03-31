@@ -9,7 +9,7 @@
         </button>
 
         <div *ngIf="isExpanded" class="absolute left-0 right-0 top-full mt-1 bg-white border rounded shadow-lg z-10">
-            <div *ngFor="let template of templates" (click)="selectTemplate(template.id)"
+            <div *ngFor="let template of localTemplates" (click)="selectTemplate(template.id)"
                 class="p-3 hover:bg-gray-50 cursor-pointer border-b last:border-b-0"
                 [class.bg-blue-50]="selectedTemplate === template.id">
                 <div class="font-medium">{{ template.name }}</div>

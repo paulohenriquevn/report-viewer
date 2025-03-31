@@ -3,7 +3,7 @@
     "author": "Sistema BI",
     "createdAt": "2025-03-31T10:00:00",
     "version": "1.0",
-    "dataSource": "assets/reports/data/sales-data.json",
+    "dataSource": "./assets/reports/data/sales-data.json",
     "preferences": {
         "defaultZoom": 100,
         "defaultPageSize": "A4",
@@ -88,17 +88,6 @@
                     "style": {
                         "marginTop": "30px",
                         "marginBottom": "20px"
-                    }
-                },
-                {
-                    "type": "image",
-                    "url": "/assets/images/logo.png",
-                    "alt": "Logo da Empresa",
-                    "width": 200,
-                    "height": 200,
-                    "style": {
-                        "margin": "0 auto",
-                        "display": "block"
                     }
                 },
                 {

@@ -15,6 +15,11 @@ export interface ReportConfig {
         template?: string;
     };
     parameters?: ReportParameter[];
+    templates?: {
+        id: string;
+        name: string;
+        description?: string;
+    }[];
     pages: ReportPage[];
 }
 

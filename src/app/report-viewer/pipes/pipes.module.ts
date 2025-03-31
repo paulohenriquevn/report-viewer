@@ -1,15 +1,10 @@
-import { NgModule } from "@angular/core";
-import { FormatValuePipe } from "./format-value.pipe";
-import { SafeHtmlPipe } from "./safe-html.pipe";
+import { NgModule } from '@angular/core';
+
+// Este módulo está mantido apenas para compatibilidade com código legado
+// Os pipes já são usados como standalone
 
 @NgModule({
-    declarations: [
-        SafeHtmlPipe,
-        FormatValuePipe
-    ],
-    exports: [
-        SafeHtmlPipe,
-        FormatValuePipe
-    ]
+    declarations: [],
+    exports: []
 })
 export class PipesModule { }

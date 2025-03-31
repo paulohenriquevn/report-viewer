@@ -1,15 +1,17 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { ReportImageElement } from '../../models/report-element.model';
+import { ReportElement as ConfigReportElement } from '../../models/report-config.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-image-renderer',
     templateUrl: './image-renderer.component.html',
     styleUrls: ['./image-renderer.component.scss'],
+    standalone: true,
     imports: [CommonModule]
 })
 export class ImageRendererComponent implements OnChanges {
-    @Input() imageElement!: ReportImageElement;
+    @Input() imageElement!: ReportImageElement | ConfigReportElement;
     @Input() zoomLevel: number = 100;
 
     imageWidth: string = '';

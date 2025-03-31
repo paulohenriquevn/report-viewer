@@ -1,29 +1,39 @@
 <div class="bg-white shadow-md rounded p-4 mb-4">
     <div *ngFor="let param of parameters" class="mb-4">
         <ng-container [ngSwitch]="param.type">
-            <input *ngSwitchCase="'text'" type="text"
-                (input)="handleParamChange(param.name, ($event.target as HTMLInputElement).value)"
-                [(ngModel)]="paramValues[param.name]" />
+            <input *ngSwitchCase="'text'" 
+                type="text" 
+                class="form-control"
+                [(ngModel)]="paramValues[param.name]"
+                (ngModelChange)="onParamChange(param.name, $event)" />
             
-            <input *ngSwitchCase="'number'" type="number"
-                (input)="handleParamChange(param.name, ($event.target as HTMLInputElement).value)"
-                [(ngModel)]="paramValues[param.name]" />
+            <input *ngSwitchCase="'number'" 
+                type="number"
+                class="form-control"
+                [(ngModel)]="paramValues[param.name]"
+                (ngModelChange)="onParamChange(param.name, $event)" />
             
-            <input *ngSwitchCase="'date'" type="date"
-                (change)="handleParamChange(param.name, ($event.target as HTMLInputElement).value)"
-                [(ngModel)]="paramValues[param.name]" />
+            <input *ngSwitchCase="'date'" 
+                type="date"
+                class="form-control"
+                [(ngModel)]="paramValues[param.name]"
+                (ngModelChange)="onParamChange(param.name, $event)" />
             
             <select *ngSwitchCase="'select'"
-                (change)="handleParamChange(param.name, ($event.target as HTMLSelectElement).value)"
-                [(ngModel)]="paramValues[param.name]">
-                <option *ngFor="let option of param.options" [value]="option.value">
+                class="form-control"
+                [(ngModel)]="paramValues[param.name]"
+                (ngModelChange)="onParamChange(param.name, $event)">
+                <option *ngFor="let option of param.options" 
+                    [value]="option.value">
                     {{option.label}}
                 </option>
             </select>
             
-            <input *ngSwitchCase="'checkbox'" type="checkbox"
-                (change)="handleParamChange(param.name, ($event.target as HTMLInputElement).checked)"
-                [(ngModel)]="paramValues[param.name]" />
+            <input *ngSwitchCase="'checkbox'" 
+                type="checkbox"
+                class="form-check-input"
+                [(ngModel)]="paramValues[param.name]"
+                (ngModelChange)="onParamChange(param.name, $event)" />
         </ng-container>
     </div>
 </div>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "analisa-ai": {
+    "bi-report-viewer": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,9 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "aot": true,
-            "optimization": true,
-            "outputPath": "dist/analisa-ai",
+            "outputPath": "dist/bi-report-viewer",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -28,20 +26,13 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
               "src/styles.scss"
             ],
             "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
           },
           "configurations": {
             "production": {
@@ -71,16 +62,19 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "analisa-ai:build:production"
+              "buildTarget": "bi-report-viewer:build:production"
             },
             "development": {
-              "buildTarget": "analisa-ai:build:development"
+              "buildTarget": "bi-report-viewer:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "bi-report-viewer:build"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -92,10 +86,8 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
               "src/styles.scss"

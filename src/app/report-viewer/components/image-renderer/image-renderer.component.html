@@ -6,7 +6,10 @@
 
     <!-- Estado de erro -->
     <div *ngIf="hasError" class="absolute inset-0 flex items-center justify-center bg-gray-100">
-        <div class="text-red-500">Erro ao carregar imagem</div>
+        <div class="text-red-500">
+            Imagem não disponível<br>
+            <small>{{ imageElement.url || 'URL não especificada' }}</small>
+        </div>
     </div>
 
     <!-- Imagem -->

@@ -4,18 +4,29 @@ import { ReportService } from '../../services/report.service';
 import { TemplateService } from '../../services/template.service';
 import { ReportConfig } from '../../models/report-config.model';
 import { ReportData } from '../../models/report-data.model';
+import { ReportPage, ReportElement as ConfigReportElement } from '../../models/report-config.model';
+import { 
+    ReportElement, 
+    ReportTextElement, 
+    ReportTableElement, 
+    ReportChartElement, 
+    ReportImageElement 
+} from '../../models/report-element.model';
+
+// Standalone components
 import { TemplateManagerComponent } from '../template-manager/template-manager.component';
 import { ReportParametersComponent } from '../report-parameters/report-parameters.component';
 import { TableRendererComponent } from '../table-renderer/table-renderer.component';
 import { ChartRendererComponent } from '../chart-renderer/chart-renderer.component';
 import { ImageRendererComponent } from '../image-renderer/image-renderer.component';
 import { TextRendererComponent } from '../text-renderer/text-renderer.component';
+
+// Directives and Pipes
 import { HighlightSearchDirective } from '../../directives/highlight-search.directive';
+import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
 
 @Component({
     selector: 'app-report-viewer',
-    templateUrl: './report-viewer.component.html',
-    styleUrls: ['./report-viewer.component.scss'],
     standalone: true,
     imports: [
         CommonModule,
@@ -25,8 +36,11 @@ import { HighlightSearchDirective } from '../../directives/highlight-search.dire
         ChartRendererComponent,
         ImageRendererComponent,
         TextRendererComponent,
-        HighlightSearchDirective
-    ]
+        HighlightSearchDirective,
+        SafeHtmlPipe
+    ],
+    templateUrl: './report-viewer.component.html',
+    styleUrls: ['./report-viewer.component.scss']
 })
 export class ReportViewerComponent implements OnInit {
     @Input() reportConfigPath!: string;
@@ -38,7 +52,7 @@ export class ReportViewerComponent implements OnInit {
     searchTerm: string = '';
     exportFormat: string = 'pdf';
     isLoading: boolean = false;
-    error: string | undefined | null = null;
+    error: string | null = null;
     selectedTemplate: string = '';
 
     constructor(
@@ -53,9 +67,11 @@ export class ReportViewerComponent implements OnInit {
     async loadReportConfig(): Promise<void> {
         try {
             this.isLoading = true;
+            console.log('Carregando configuração do relatório:', this.reportConfigPath);
             this.reportConfig = await this.reportService.loadReportConfig(this.reportConfigPath);
+            console.log('Configuração carregada:', this.reportConfig);
 
-            // Define o template se especificado nas preferências
+            // Definir template padrão
             if (this.reportConfig?.preferences?.template) {
                 this.selectedTemplate = this.reportConfig.preferences.template;
             }
@@ -65,7 +81,9 @@ export class ReportViewerComponent implements OnInit {
             }
 
             this.isLoading = false;
+            console.log('Página atual:', this.getCurrentPage());
         } catch (err) {
+            console.error('Erro ao carregar configuração:', err);
             this.error = `Erro ao carregar configuração: ${err instanceof Error ? err.message : 'Erro desconhecido'}`;
             this.isLoading = false;
         }
@@ -73,10 +91,18 @@ export class ReportViewerComponent implements OnInit {
 
     async loadReportData(dataSource: string): Promise<void> {
         try {
+            console.log('Carregando dados do relatório:', dataSource);
             this.reportData = await this.reportService.loadReportData(dataSource);
+            console.log('Dados carregados:', this.reportData);
         } catch (err) {
+            console.error('Erro ao carregar dados:', err);
             this.error = `Erro ao carregar dados: ${err instanceof Error ? err.message : 'Erro desconhecido'}`;
         }
+    }
+
+    onParametersChange(parameters: { [key: string]: any }): void {
+        console.log('Parâmetros atualizados:', parameters);
+        // Adicione lógica para atualizar os dados do relatório com base nos parâmetros
     }
 
     onPrevPage(): void {
@@ -86,7 +112,7 @@ export class ReportViewerComponent implements OnInit {
     }
 
     onNextPage(): void {
-        if (this.selectedPage < this.reportConfig.pages.length - 1) {
+        if (this.reportConfig && this.selectedPage < this.reportConfig.pages.length - 1) {
             this.selectedPage++;
         }
     }
@@ -138,7 +164,7 @@ export class ReportViewerComponent implements OnInit {
         }
     }
 
-    getCurrentPage(): any {
+    getCurrentPage(): ReportPage | null {
         if (!this.reportConfig || !this.reportConfig.pages || this.reportConfig.pages.length === 0) {
             return null;
         }
@@ -146,33 +172,53 @@ export class ReportViewerComponent implements OnInit {
         return this.reportConfig.pages[this.selectedPage];
     }
 
-    getElementStyle(element: any): any {
-        const baseStyle: Record<string, string> = {};
+    getElementStyle(element: ConfigReportElement): { [key: string]: string } {
+        const baseStyle: { [key: string]: string } = {};
 
-        if (element.fontSize) {
-            baseStyle['fontSize'] = `${element.fontSize * this.zoomLevel / 100}px`;
+        if (element.type === 'text') {
+            // Convertemos para o tipo ReportTextElement
+            const textElement = element as unknown as ReportTextElement;
+            
+            if (textElement.fontSize) {
+                baseStyle['fontSize'] = `${textElement.fontSize * this.zoomLevel / 100}px`;
+            }
+
+            if (textElement.bold) {
+                baseStyle['fontWeight'] = 'bold';
+            }
+
+            if (textElement.italic) {
+                baseStyle['fontStyle'] = 'italic';
+            }
+
+            if (textElement.underline) {
+                baseStyle['textDecoration'] = 'underline';
+            }
+
+            if (textElement.color) {
+                baseStyle['color'] = textElement.color;
+            }
+
+            if (textElement.align) {
+                baseStyle['textAlign'] = textElement.align;
+            }
+
+            return { ...baseStyle, ...(textElement.style || {}) };
         }
 
-        if (element.bold) {
-            baseStyle['fontWeight'] = 'bold';
-        }
+        return baseStyle;
+    }
 
-        if (element.italic) {
-            baseStyle['fontStyle'] = 'italic';
-        }
+    // Método para decidir qual renderizador usar
+    getRendererType(element: ConfigReportElement): string {
+        return element.type;
+    }
 
-        if (element.underline) {
-            baseStyle['textDecoration'] = 'underline';
+    // Método para obter dados da fonte
+    getElementData(element: ConfigReportElement): any[] {
+        if ('dataSource' in element) {
+            return this.reportData[element['dataSource']] || [];
         }
-
-        if (element.color) {
-            baseStyle['color'] = element.color;
-        }
-
-        if (element.align) {
-            baseStyle['textAlign'] = element.align;
-        }
-
-        return { ...baseStyle, ...(element.style || {}) };
+        return [];
     }
 }

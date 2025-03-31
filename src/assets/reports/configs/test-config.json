@@ -1,0 +1,22 @@
+{
+    "reportName": "Relatório de Teste",
+    "author": "Sistema BI",
+    "createdAt": "2025-03-31T10:00:00",
+    "version": "1.0",
+    "dataSource": "./assets/reports/data/sales-data.json",
+    "pages": [
+        {
+            "name": "Página de Teste",
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "TESTE DE RELATÓRIO",
+                    "fontSize": 24,
+                    "bold": true,
+                    "align": "center",
+                    "color": "#2c3e50"
+                }
+            ]
+        }
+    ]
+}

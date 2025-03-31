@@ -1,15 +1,18 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ReportTableElement } from '../../models/report-element.model';
 import { CommonModule } from '@angular/common';
+import { ReportTableElement } from '../../models/report-element.model';
+import { ReportElement as ConfigReportElement } from '../../models/report-config.model';
+import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
 
 @Component({
     selector: 'app-table-renderer',
+    standalone: true,
+    imports: [CommonModule, SafeHtmlPipe],
     templateUrl: './table-renderer.component.html',
-    styleUrls: ['./table-renderer.component.scss'],
-    imports: [CommonModule]
+    styleUrls: ['./table-renderer.component.scss']
 })
 export class TableRendererComponent implements OnChanges {
-    @Input() tableElement!: ReportTableElement;
+    @Input() tableElement!: ReportTableElement | ConfigReportElement;
     @Input() tableData!: any[];
     @Input() zoomLevel: number = 100;
     @Input() searchTerm: string = '';
@@ -20,7 +23,6 @@ export class TableRendererComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['tableData']) {
-            // Inicializa os dados ordenados com os dados originais
             this.sortedData = [...this.tableData];
         }
     }
@@ -32,7 +34,6 @@ export class TableRendererComponent implements OnChanges {
             baseStyle['fontSize'] = `${this.tableElement.headerFontSize * this.zoomLevel / 100}px`;
         }
 
-        // Combina com os estilos definidos no elemento da tabela
         return { ...baseStyle, ...(this.tableElement.headerStyle || {}) };
     }
 
@@ -43,12 +44,10 @@ export class TableRendererComponent implements OnChanges {
             baseStyle['fontSize'] = `${this.tableElement.fontSize * this.zoomLevel / 100}px`;
         }
 
-        // Combina com os estilos definidos no elemento da tabela
         return { ...baseStyle, ...(this.tableElement.cellStyle || {}) };
     }
 
     getRowClass(rowIndex: number): string {
-        // Aplica classe de zebra se configurado
         if (this.tableElement.zebraStripe && rowIndex % 2 === 1) {
             return 'bg-gray-50';
         }
@@ -58,32 +57,26 @@ export class TableRendererComponent implements OnChanges {
     sortByColumn(column: any): void {
         const field = column.field;
 
-        // Se já estiver ordenando por esta coluna, inverte a direção
         if (this.sortColumn === field) {
             this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
         } else {
-            // Define nova coluna e direção padrão
             this.sortColumn = field;
             this.sortDirection = 'asc';
         }
 
-        // Ordena os dados
         this.sortedData.sort((a, b) => {
             let valueA = a[field];
             let valueB = b[field];
 
-            // Verifica se os valores são numéricos
             if (!isNaN(Number(valueA)) && !isNaN(Number(valueB))) {
                 valueA = Number(valueA);
                 valueB = Number(valueB);
             } else if (typeof valueA === 'string' && typeof valueB === 'string') {
-                // Compara strings ignorando case
                 return this.sortDirection === 'asc'
                     ? valueA.localeCompare(valueB)
                     : valueB.localeCompare(valueA);
             }
 
-            // Compara valores
             return this.sortDirection === 'asc'
                 ? (valueA > valueB ? 1 : -1)
                 : (valueA < valueB ? 1 : -1);
@@ -95,13 +88,9 @@ export class TableRendererComponent implements OnChanges {
             return text;
         }
 
-        // Escapa caracteres especiais regex
         const escapedSearchTerm = this.searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-        // Cria regex para substituição
         const regex = new RegExp(`(${escapedSearchTerm})`, 'gi');
 
-        // Substitui o termo com a versão destacada
         return text.replace(regex, '<span class="bg-yellow-200">$1</span>');
     }
 
@@ -110,7 +99,6 @@ export class TableRendererComponent implements OnChanges {
             return '';
         }
 
-        // Lógica básica de formatação
         if (format === 'currency') {
             return `R$ ${Number(value).toLocaleString('pt-BR', {
                 minimumFractionDigits: 2,
@@ -129,7 +117,6 @@ export class TableRendererComponent implements OnChanges {
             return value.toLocaleDateString('pt-BR');
         }
 
-        // Sem formatação específica
         return String(value);
     }
 }

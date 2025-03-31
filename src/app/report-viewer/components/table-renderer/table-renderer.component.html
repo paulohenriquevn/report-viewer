@@ -1,8 +1,10 @@
 <table class="w-full border-collapse border border-gray-300">
-    <thead *ngIf="tableElement.showHeader">
+    <thead *ngIf="tableElement?.showHeader">
         <tr>
-            <th *ngFor="let column of tableElement.columns" class="border border-gray-300 p-2 cursor-pointer"
-                [ngStyle]="getHeaderStyle(column)" (click)="sortByColumn(column)">
+            <th *ngFor="let column of tableElement?.columns" 
+                class="border border-gray-300 p-2 cursor-pointer"
+                [ngStyle]="getHeaderStyle(column)" 
+                (click)="sortByColumn(column)">
                 {{ column.header }}
                 <span *ngIf="sortColumn === column.field" class="ml-1">
                     {{ sortDirection === 'asc' ? '▲' : '▼' }}
@@ -12,12 +14,14 @@
     </thead>
     <tbody>
         <tr *ngFor="let row of sortedData; let i = index" [ngClass]="getRowClass(i)">
-            <td *ngFor="let column of tableElement.columns" class="border border-gray-300 p-2"
-                [ngStyle]="getCellStyle(column)"
-                [innerHTML]="highlightSearchTerm(formatValue(row[column.field], column.format || '')) | safeHtml"></td>
+            <td *ngFor="let column of tableElement?.columns" 
+                class="border border-gray-300 p-2"
+                [ngStyle]="getCellStyle(column)">
+                <span [innerHTML]="highlightSearchTerm(formatValue(row[column.field], column.format || '')) | safeHtml"></span>
+            </td>
         </tr>
         <tr *ngIf="!tableData || tableData.length === 0">
-            <td [attr.colspan]="tableElement.columns.length"
+            <td [attr.colspan]="tableElement && tableElement.columns ? tableElement.columns.length : 1"
                 class="border border-gray-300 p-4 text-center text-gray-500">
                 Nenhum registro encontrado
             </td>

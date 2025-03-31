@@ -1,12 +1,14 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { ReportTextElement } from '../../models/report-element.model';
 import { CommonModule } from '@angular/common';
+import { HighlightSearchDirective } from '../../directives/highlight-search.directive';
 
 @Component({
     selector: 'app-text-renderer',
     templateUrl: './text-renderer.component.html',
     styleUrls: ['./text-renderer.component.scss'],
-    imports: [CommonModule]
+    standalone: true,
+    imports: [CommonModule, HighlightSearchDirective]
 })
 export class TextRendererComponent implements OnChanges {
     @Input() textElement!: ReportTextElement;
