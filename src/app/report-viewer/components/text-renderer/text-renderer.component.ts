@@ -7,7 +7,7 @@ import { ReportTextElement } from '../../models/report-element.model';
     styleUrls: ['./text-renderer.component.scss']
 })
 export class TextRendererComponent implements OnChanges {
-    @Input() textElement: ReportTextElement;
+    @Input() textElement!: ReportTextElement;
     @Input() zoomLevel: number = 100;
     @Input() searchTerm: string = '';
 

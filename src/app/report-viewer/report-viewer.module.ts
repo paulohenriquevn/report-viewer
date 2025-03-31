@@ -59,9 +59,11 @@ import { ZoomDirective } from './directives/zoom.directive';
         ExportService
     ],
     exports: [
+        CommonModule,
         ReportViewerComponent,
         ReportParametersComponent,
         TemplateManagerComponent
     ]
 })
 export class ReportViewerModule { }
+

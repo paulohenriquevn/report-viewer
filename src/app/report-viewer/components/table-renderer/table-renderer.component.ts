@@ -7,7 +7,7 @@ import { ReportTableElement } from '../../models/report-element.model';
     styleUrls: ['./table-renderer.component.scss']
 })
 export class TableRendererComponent implements OnChanges {
-    @Input() tableElement: ReportTableElement;
+    @Input() tableElement!: ReportTableElement;
     @Input() tableData!: any[];
     @Input() zoomLevel: number = 100;
     @Input() searchTerm: string = '';

@@ -9,6 +9,8 @@ import { ExportService } from './export.service';
     providedIn: 'root'
 })
 export class ReportService {
+    private reportData: ReportData | null = null;
+
     constructor(
         private http: HttpClient,
         private exportService: ExportService
@@ -69,6 +71,9 @@ export class ReportService {
         // Em um ambiente real, os parâmetros seriam enviados para o servidor
         // ou processados localmente para filtrar os dados
         console.log('Aplicando parâmetros:', parameters);
+        if (!this.reportData) {
+            throw new Error('Report data is not loaded');
+        }
         return this.reportData;
     }
 }

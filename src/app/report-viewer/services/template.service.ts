@@ -144,7 +144,7 @@ export class TemplateService {
             Object.keys(this.templates).map(key => ({
                 id: key,
                 name: this.templates[key].name,
-                description: this.templates[key].description
+                description: this.templates[key].description || ''
             }))
         );
     }

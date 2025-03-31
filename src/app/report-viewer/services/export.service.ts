@@ -46,14 +46,14 @@ export class ExportService {
 
         // Encontra a primeira tabela no relatório
         let tableData = null;
-        let columns = [];
+        let columns: { header: string; field: string }[] = [];
 
         // Procura a primeira tabela em todas as páginas
         for (const page of reportConfig.pages) {
             const tableElement = page.elements.find(element => element.type === 'table');
-            if (tableElement && tableElement.dataSource && reportData[tableElement.dataSource]) {
-                tableData = reportData[tableElement.dataSource];
-                columns = tableElement.columns;
+            if (tableElement && tableElement['dataSource'] && reportData[tableElement['dataSource']]) {
+                tableData = reportData[tableElement['dataSource']];
+                columns = tableElement['columns'];
                 break;
             }
         }

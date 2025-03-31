@@ -10,10 +10,10 @@ import { ReportData } from '../../models/report-data.model';
     styleUrls: ['./report-viewer.component.scss']
 })
 export class ReportViewerComponent implements OnInit {
-    @Input() reportConfigPath: string;
+    @Input() reportConfigPath!: string;
 
-    reportConfig: ReportConfig;
-    reportData: ReportData;
+    reportConfig!: ReportConfig;
+    reportData!: ReportData;
     selectedPage: number = 0;
     zoomLevel: number = 100;
     searchTerm: string = '';
@@ -47,7 +47,7 @@ export class ReportViewerComponent implements OnInit {
 
             this.isLoading = false;
         } catch (err) {
-            this.error = `Erro ao carregar configuração: ${err.message}`;
+            this.error = `Erro ao carregar configuração: ${err instanceof Error ? err.message : 'Erro desconhecido'}`;
             this.isLoading = false;
         }
     }
@@ -56,7 +56,7 @@ export class ReportViewerComponent implements OnInit {
         try {
             this.reportData = await this.reportService.loadReportData(dataSource);
         } catch (err) {
-            this.error = `Erro ao carregar dados: ${err.message}`;
+            this.error = `Erro ao carregar dados: ${err instanceof Error ? err.message : 'Erro desconhecido'}`;
         }
     }
 
@@ -114,7 +114,7 @@ export class ReportViewerComponent implements OnInit {
 
             this.isLoading = false;
         } catch (err) {
-            this.error = `Erro ao aplicar template: ${err.message}`;
+            this.error = `Erro ao aplicar template: ${err instanceof Error ? err.message : 'Erro desconhecido'}`;
             this.isLoading = false;
         }
     }
@@ -128,7 +128,7 @@ export class ReportViewerComponent implements OnInit {
     }
 
     getElementStyle(element: any): any {
-        const baseStyle = {};
+        const baseStyle: Record<string, string> = {};
 
         if (element.fontSize) {
             baseStyle['fontSize'] = `${element.fontSize * this.zoomLevel / 100}px`;

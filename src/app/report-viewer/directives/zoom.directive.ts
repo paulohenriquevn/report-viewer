@@ -17,7 +17,7 @@ export class ZoomDirective implements OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes.zoomLevel) {
+        if (changes['zoomLevel']) {
             this.applyZoom();
         }
     }

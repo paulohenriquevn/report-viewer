@@ -7,11 +7,11 @@ import { ReportImageElement } from '../../models/report-element.model';
     styleUrls: ['./image-renderer.component.scss']
 })
 export class ImageRendererComponent implements OnChanges {
-    @Input() imageElement: ReportImageElement;
+    @Input() imageElement!: ReportImageElement;
     @Input() zoomLevel: number = 100;
 
-    imageWidth: string;
-    imageHeight: string;
+    imageWidth: string = '';
+    imageHeight: string = '';
     imageStyle: any = {};
     isLoading: boolean = true;
     hasError: boolean = false;
