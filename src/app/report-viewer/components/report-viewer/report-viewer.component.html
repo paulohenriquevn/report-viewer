@@ -154,7 +154,7 @@
             </div>
             
             <!-- Conteúdo do relatório, quando disponível -->
-            <div *ngIf="getCurrentPage()" class="bg-white rounded-lg shadow-md p-6">
+            <div *ngIf="getCurrentPage()">
                 <div class="page-container" [ngStyle]="{'transform': 'scale(' + zoomLevel/100 + ')', 'transform-origin': 'top left'}">
                     <h1 class="text-2xl font-bold mb-6 text-gray-800 pb-2 border-b">{{ getCurrentPage()?.name }}</h1>
                     

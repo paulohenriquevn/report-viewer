@@ -58,54 +58,15 @@ export class ReportViewerComponent implements OnInit {
 
     ngOnInit(): void {
         // Solução temporária: criar um relatório estático
-        this.createStaticReport();
+        // this.createStaticReport();
         
         // Método original (desativado temporariamente)
-        // setTimeout(() => this.loadReportConfig(), 100);
+        setTimeout(() => this.loadReportConfig(), 100);
     }
     
     // Cria um relatório estático para demonstração
     createStaticReport(): void {
         this.isLoading = true;
-        
-        // Definir dados estáticos mais simples
-        this.reportData = {
-            "simpleData": [
-                { "name": "Item 1", "value": 100 },
-                { "name": "Item 2", "value": 200 },
-                { "name": "Item 3", "value": 300 }
-            ]
-        };
-        
-        // Definir configuração estática minimalista
-        this.reportConfig = {
-            reportName: "Relatório Básico de Demonstração",
-            author: "Sistema BI",
-            version: "1.0",
-            dataSource: "static",
-            pages: [
-                {
-                    name: "Página Única",
-                    elements: [
-                        {
-                            type: "text",
-                            content: "RELATÓRIO BÁSICO",
-                            fontSize: 24,
-                            bold: true,
-                            align: "center",
-                            color: "#2c3e50"
-                        },
-                        {
-                            type: "text",
-                            content: "Este é um relatório básico para testar o componente.",
-                            fontSize: 14,
-                            align: "center"
-                        }
-                    ]
-                }
-            ]
-        };
-        
         this.isLoading = false;
     }
 

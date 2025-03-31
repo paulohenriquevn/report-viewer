@@ -1,0 +1,300 @@
+{
+    "reportName": "Nota Fiscal Eletrônica (NFe)",
+    "author": "Sistema BI",
+    "createdAt": "2025-03-31T14:30:00",
+    "version": "1.0",
+    "dataSource": "./assets/reports/data/nfe-data.json",
+    "preferences": {
+        "defaultZoom": 100,
+        "defaultPageSize": "A4",
+        "defaultOrientation": "portrait",
+        "defaultFont": "Arial",
+        "exportFormats": [
+            "pdf",
+            "excel",
+            "csv",
+            "image"
+        ],
+        "enableSearch": true,
+        "template": "fiscal"
+    },
+    "parameters": [
+        {
+            "name": "nfeId",
+            "label": "Número NFe",
+            "type": "text",
+            "required": false,
+            "defaultValue": "123456789"
+        },
+        {
+            "name": "dateFilter",
+            "label": "Data de Emissão",
+            "type": "date",
+            "required": false,
+            "defaultValue": "2025-03-31"
+        }
+    ],
+    "pages": [
+        {
+            "name": "DANFE",
+            "width": 800,
+            "height": 1100,
+            "margins": {
+                "top": 20,
+                "right": 20,
+                "bottom": 20,
+                "left": 20
+            },
+            "elements": [
+                {
+                    "type": "text",
+                    "content": "DANFE - DOCUMENTO AUXILIAR DA NOTA FISCAL ELETRÔNICA",
+                    "fontSize": 14,
+                    "bold": true,
+                    "align": "center",
+                    "color": "#000000",
+                    "style": {
+                        "marginTop": "10px",
+                        "marginBottom": "10px"
+                    }
+                },
+                {
+                    "type": "text",
+                    "content": "0 - ENTRADA | 1 - SAÍDA",
+                    "fontSize": 10,
+                    "align": "center",
+                    "style": {
+                        "marginBottom": "5px",
+                        "border": "1px solid #000",
+                        "padding": "5px",
+                        "width": "200px",
+                        "marginLeft": "auto",
+                        "marginRight": "auto"
+                    }
+                },
+                {
+                    "type": "table",
+                    "dataSource": "nfeHeader",
+                    "showHeader": false,
+                    "fontSize": 10,
+                    "style": {
+                        "border": "1px solid #000",
+                        "width": "100%",
+                        "marginBottom": "15px"
+                    },
+                    "columns": [
+                        {
+                            "field": "label",
+                            "width": "30%",
+                            "style": {
+                                "fontWeight": "bold"
+                            }
+                        },
+                        {
+                            "field": "value",
+                            "width": "70%"
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "title": "DADOS DO EMITENTE",
+                    "dataSource": "emitente",
+                    "showHeader": false,
+                    "fontSize": 10,
+                    "style": {
+                        "border": "1px solid #000",
+                        "width": "45%",
+                        "marginBottom": "15px",
+                        "float": "left"
+                    },
+                    "columns": [
+                        {
+                            "field": "label",
+                            "width": "30%",
+                            "style": {
+                                "fontWeight": "bold"
+                            }
+                        },
+                        {
+                            "field": "value",
+                            "width": "70%"
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "title": "DADOS DO DESTINATÁRIO",
+                    "dataSource": "destinatario",
+                    "showHeader": false,
+                    "fontSize": 10,
+                    "style": {
+                        "border": "1px solid #000",
+                        "width": "45%",
+                        "marginBottom": "15px",
+                        "float": "right"
+                    },
+                    "columns": [
+                        {
+                            "field": "label",
+                            "width": "30%",
+                            "style": {
+                                "fontWeight": "bold"
+                            }
+                        },
+                        {
+                            "field": "value",
+                            "width": "70%"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "PRODUTOS / SERVIÇOS",
+                    "fontSize": 12,
+                    "bold": true,
+                    "align": "center",
+                    "color": "#000000",
+                    "style": {
+                        "marginTop": "20px",
+                        "marginBottom": "10px",
+                        "clear": "both"
+                    }
+                },
+                {
+                    "type": "table",
+                    "dataSource": "produtos",
+                    "showHeader": true,
+                    "fontSize": 9,
+                    "headerFontSize": 10,
+                    "zebraStripe": true,
+                    "style": {
+                        "border": "1px solid #000",
+                        "width": "100%",
+                        "marginBottom": "15px"
+                    },
+                    "columns": [
+                        {
+                            "field": "codigo",
+                            "header": "CÓDIGO",
+                            "width": "8%"
+                        },
+                        {
+                            "field": "descricao",
+                            "header": "DESCRIÇÃO",
+                            "width": "30%"
+                        },
+                        {
+                            "field": "ncm",
+                            "header": "NCM",
+                            "width": "8%"
+                        },
+                        {
+                            "field": "cst",
+                            "header": "CST",
+                            "width": "5%"
+                        },
+                        {
+                            "field": "cfop",
+                            "header": "CFOP",
+                            "width": "5%"
+                        },
+                        {
+                            "field": "unidade",
+                            "header": "UN",
+                            "width": "4%"
+                        },
+                        {
+                            "field": "quantidade",
+                            "header": "QUANT",
+                            "width": "8%",
+                            "format": "number"
+                        },
+                        {
+                            "field": "valorUnitario",
+                            "header": "V.UNIT",
+                            "width": "8%",
+                            "format": "currency"
+                        },
+                        {
+                            "field": "valorTotal",
+                            "header": "V.TOTAL",
+                            "width": "8%",
+                            "format": "currency"
+                        },
+                        {
+                            "field": "baseCalculoIcms",
+                            "header": "BC ICMS",
+                            "width": "8%",
+                            "format": "currency"
+                        },
+                        {
+                            "field": "valorIcms",
+                            "header": "V.ICMS",
+                            "width": "8%",
+                            "format": "currency"
+                        }
+                    ]
+                },
+                {
+                    "type": "table",
+                    "title": "CÁLCULO DO IMPOSTO",
+                    "dataSource": "totais",
+                    "showHeader": false,
+                    "fontSize": 10,
+                    "style": {
+                        "border": "1px solid #000",
+                        "width": "100%",
+                        "marginBottom": "15px"
+                    },
+                    "columns": [
+                        {
+                            "field": "label",
+                            "width": "40%",
+                            "style": {
+                                "fontWeight": "bold"
+                            }
+                        },
+                        {
+                            "field": "value",
+                            "width": "60%",
+                            "format": "currency"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "DADOS ADICIONAIS",
+                    "fontSize": 12,
+                    "bold": true,
+                    "align": "center",
+                    "color": "#000000",
+                    "style": {
+                        "marginTop": "20px",
+                        "marginBottom": "10px"
+                    }
+                },
+                {
+                    "type": "text",
+                    "content": "Informações Complementares: Esta NF-e foi emitida em ambiente de teste, sem valor fiscal. Informações adicionais podem ser consultadas através da chave de acesso no site da SEFAZ.",
+                    "fontSize": 9,
+                    "align": "justify",
+                    "style": {
+                        "border": "1px solid #000",
+                        "padding": "10px",
+                        "marginBottom": "20px"
+                    }
+                },
+                {
+                    "type": "text",
+                    "content": "Protocolo de Autorização: 123456789012345 - 31/03/2025 14:30:45",
+                    "fontSize": 10,
+                    "align": "center",
+                    "style": {
+                        "marginTop": "20px"
+                    }
+                }
+            ]
+        }
+    ]
+}

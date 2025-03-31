@@ -1,0 +1,256 @@
+{
+    "nfeHeader": [
+        {
+            "label": "Número NF-e:",
+            "value": "123.456.789"
+        },
+        {
+            "label": "Série:",
+            "value": "001"
+        },
+        {
+            "label": "Data de Emissão:",
+            "value": "31/03/2025"
+        },
+        {
+            "label": "Data de Saída:",
+            "value": "31/03/2025"
+        },
+        {
+            "label": "Chave de Acesso:",
+            "value": "1234 5678 9012 3456 7890 1234 5678 9012 3456 7890 1234"
+        },
+        {
+            "label": "Natureza da Operação:",
+            "value": "VENDA DE MERCADORIA"
+        }
+    ],
+    "emitente": [
+        {
+            "label": "Razão Social:",
+            "value": "EMPRESA DEMONSTRAÇÃO LTDA"
+        },
+        {
+            "label": "Nome Fantasia:",
+            "value": "DEMO COMPANY"
+        },
+        {
+            "label": "CNPJ:",
+            "value": "12.345.678/0001-99"
+        },
+        {
+            "label": "Inscrição Estadual:",
+            "value": "123.456.789.000"
+        },
+        {
+            "label": "Endereço:",
+            "value": "Av. Brasil, 1500"
+        },
+        {
+            "label": "Bairro:",
+            "value": "Centro"
+        },
+        {
+            "label": "CEP:",
+            "value": "12.345-678"
+        },
+        {
+            "label": "Município:",
+            "value": "São Paulo"
+        },
+        {
+            "label": "UF:",
+            "value": "SP"
+        },
+        {
+            "label": "Telefone:",
+            "value": "(11) 1234-5678"
+        }
+    ],
+    "destinatario": [
+        {
+            "label": "Razão Social:",
+            "value": "CLIENTE MODELO S.A."
+        },
+        {
+            "label": "CNPJ:",
+            "value": "98.765.432/0001-10"
+        },
+        {
+            "label": "Inscrição Estadual:",
+            "value": "987.654.321.000"
+        },
+        {
+            "label": "Endereço:",
+            "value": "Rua das Flores, 500"
+        },
+        {
+            "label": "Bairro:",
+            "value": "Jardim Primavera"
+        },
+        {
+            "label": "CEP:",
+            "value": "87.654-321"
+        },
+        {
+            "label": "Município:",
+            "value": "Rio de Janeiro"
+        },
+        {
+            "label": "UF:",
+            "value": "RJ"
+        },
+        {
+            "label": "Telefone:",
+            "value": "(21) 9876-5432"
+        }
+    ],
+    "produtos": [
+        {
+            "codigo": "001",
+            "descricao": "Notebook Ultra 15 - 8GB RAM, SSD 256GB",
+            "ncm": "8471.30.19",
+            "cst": "000",
+            "cfop": "6102",
+            "unidade": "UN",
+            "quantidade": 2,
+            "valorUnitario": 3500.00,
+            "valorTotal": 7000.00,
+            "baseCalculoIcms": 7000.00,
+            "valorIcms": 1190.00
+        },
+        {
+            "codigo": "002",
+            "descricao": "Monitor LED 24 polegadas Full HD",
+            "ncm": "8528.52.20",
+            "cst": "000",
+            "cfop": "6102",
+            "unidade": "UN",
+            "quantidade": 2,
+            "valorUnitario": 1200.00,
+            "valorTotal": 2400.00,
+            "baseCalculoIcms": 2400.00,
+            "valorIcms": 408.00
+        },
+        {
+            "codigo": "003",
+            "descricao": "Teclado sem fio ergonômico",
+            "ncm": "8471.60.53",
+            "cst": "000",
+            "cfop": "6102",
+            "unidade": "UN",
+            "quantidade": 2,
+            "valorUnitario": 350.00,
+            "valorTotal": 700.00,
+            "baseCalculoIcms": 700.00,
+            "valorIcms": 119.00
+        },
+        {
+            "codigo": "004",
+            "descricao": "Mouse óptico sem fio",
+            "ncm": "8471.60.53",
+            "cst": "000",
+            "cfop": "6102",
+            "unidade": "UN",
+            "quantidade": 2,
+            "valorUnitario": 150.00,
+            "valorTotal": 300.00,
+            "baseCalculoIcms": 300.00,
+            "valorIcms": 51.00
+        },
+        {
+            "codigo": "005",
+            "descricao": "Licença Software Office 365 Business - 1 ano",
+            "ncm": "8523.49.90",
+            "cst": "000",
+            "cfop": "6102",
+            "unidade": "UN",
+            "quantidade": 2,
+            "valorUnitario": 800.00,
+            "valorTotal": 1600.00,
+            "baseCalculoIcms": 1600.00,
+            "valorIcms": 272.00
+        }
+    ],
+    "totais": [
+        {
+            "label": "Base de Cálculo do ICMS:",
+            "value": 12000.00
+        },
+        {
+            "label": "Valor do ICMS:",
+            "value": 2040.00
+        },
+        {
+            "label": "Base de Cálculo do ICMS ST:",
+            "value": 0.00
+        },
+        {
+            "label": "Valor do ICMS ST:",
+            "value": 0.00
+        },
+        {
+            "label": "Valor Total dos Produtos:",
+            "value": 12000.00
+        },
+        {
+            "label": "Valor do Frete:",
+            "value": 150.00
+        },
+        {
+            "label": "Valor do Seguro:",
+            "value": 50.00
+        },
+        {
+            "label": "Valor do Desconto:",
+            "value": 0.00
+        },
+        {
+            "label": "Outras Despesas:",
+            "value": 0.00
+        },
+        {
+            "label": "Valor do IPI:",
+            "value": 600.00
+        },
+        {
+            "label": "Valor Total da Nota:",
+            "value": 12800.00
+        }
+    ],
+    "transportadora": [
+        {
+            "label": "Razão Social:",
+            "value": "TRANSPORTES RÁPIDOS LTDA"
+        },
+        {
+            "label": "CNPJ:",
+            "value": "45.678.901/0001-23"
+        },
+        {
+            "label": "Inscrição Estadual:",
+            "value": "456.789.012.345"
+        },
+        {
+            "label": "Endereço:",
+            "value": "Rodovia BR-101, Km 100"
+        },
+        {
+            "label": "Município:",
+            "value": "Curitiba"
+        },
+        {
+            "label": "UF:",
+            "value": "PR"
+        }
+    ],
+    "frete": {
+        "modalidade": "0 - Contratação do Frete por conta do Remetente (CIF)",
+        "quantidade": 2,
+        "especie": "VOLUME",
+        "marca": "DEMO",
+        "numeracao": "001-002",
+        "pesoLiquido": 15.000,
+        "pesoBruto": 16.500
+    }
+}
