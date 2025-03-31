@@ -1,0 +1,221 @@
+{
+    "cabecalhoTabela": [
+        {
+            "conta": "CONTA",
+            "valorMensal": "",
+            "valorTotal": ""
+        }
+    ],
+    "receitaBruta": [
+        {
+            "conta": "A. RECEITA BRUTA",
+            "valorMensal": 2017299.64,
+            "valorTotal": 2017299.64
+        }
+    ],
+    "combustiveis": [
+        {
+            "conta": "    1.COMBUSTIVEIS",
+            "valorMensal": 1964192.38,
+            "valorTotal": 1964192.38
+        },
+        {
+            "conta": "        1.1 ETANOL HIDRATADO COMB.",
+            "valorMensal": 582978.03,
+            "valorTotal": 582978.03
+        },
+        {
+            "conta": "        1.2 GASOLINA ORIGINAL C",
+            "valorMensal": 689221.89,
+            "valorTotal": 689221.89
+        },
+        {
+            "conta": "        1.3 GASOLINA ORIGINAL C ADITIV",
+            "valorMensal": 570124.06,
+            "valorTotal": 570124.06
+        },
+        {
+            "conta": "        1.4 ÓLEO DIESEL B S-10 ORIGINA",
+            "valorMensal": 38581.31,
+            "valorTotal": 38581.31
+        },
+        {
+            "conta": "        1.5 Ó DIE B S500 ORIGINAL",
+            "valorMensal": 129287.09,
+            "valorTotal": 129287.09
+        }
+    ],
+    "produtos": [
+        {
+            "conta": "    2.PRODUTOS",
+            "valorMensal": 36772.77,
+            "valorTotal": 36772.77
+        },
+        {
+            "conta": "        2.1 ADITIVOS",
+            "valorMensal": 1583.99,
+            "valorTotal": 1583.99
+        },
+        {
+            "conta": "        2.2 LUBRIFICANTES",
+            "valorMensal": 21416.34,
+            "valorTotal": 21416.34
+        },
+        {
+            "conta": "        2.3 EXTINTOR",
+            "valorMensal": 4786.70,
+            "valorTotal": 4786.70
+        },
+        {
+            "conta": "        2.4 FLUIDOS",
+            "valorMensal": 866.30,
+            "valorTotal": 866.30
+        },
+        {
+            "conta": "        2.5 FILTROS",
+            "valorMensal": 2649.29,
+            "valorTotal": 2649.29
+        },
+        {
+            "conta": "        2.6 MINI MERCADO",
+            "valorMensal": 4308.50,
+            "valorTotal": 4308.50
+        },
+        {
+            "conta": "        2.7 OUTROS",
+            "valorMensal": 1364.77,
+            "valorTotal": 1364.77
+        }
+    ],
+    "servicos": [
+        {
+            "conta": "    3.SERVIÇOS",
+            "valorMensal": 64.00,
+            "valorTotal": 64.00
+        },
+        {
+            "conta": "        3.1 MÃO DE OBRA",
+            "valorMensal": 64.00,
+            "valorTotal": 64.00
+        }
+    ],
+    "receitasOperacionais": [
+        {
+            "conta": "    4.RECEITAS OPERACIONAIS",
+            "valorMensal": 18778.20,
+            "valorTotal": 18778.20
+        },
+        {
+            "conta": "        4.1 JUROS CONTAS RECEBER",
+            "valorMensal": 160.21,
+            "valorTotal": 160.21
+        },
+        {
+            "conta": "        4.2 JUROS CHEQUES PRE-DATADOS",
+            "valorMensal": 31.32,
+            "valorTotal": 31.32
+        },
+        {
+            "conta": "        4.3 SOBRAS DE COMBUSTIVEL",
+            "valorMensal": 2522.35,
+            "valorTotal": 2522.35
+        },
+        {
+            "conta": "        4.4 ACERTO ESTOQUE (ENTR)",
+            "valorMensal": 161.20,
+            "valorTotal": 161.20
+        },
+        {
+            "conta": "        4.5 RESSARCIMENTO DIF CAIXAS",
+            "valorMensal": 542.00,
+            "valorTotal": 542.00
+        },
+        {
+            "conta": "        4.6 JUROS APLICAÇÃO",
+            "valorMensal": 46.77,
+            "valorTotal": 46.77
+        },
+        {
+            "conta": "        4.7 REEMB. DESCONTO DUPL",
+            "valorMensal": 0.00,
+            "valorTotal": 0.00
+        },
+        {
+            "conta": "        4.8 ALUGUEIS LOCADOS",
+            "valorMensal": 14712.33,
+            "valorTotal": 14712.33
+        },
+        {
+            "conta": "        4.9 RESSARCIMENTO DE CARTÕES",
+            "valorMensal": 147.62,
+            "valorTotal": 147.62
+        },
+        {
+            "conta": "        4.10 RECARGA CONECTCAR",
+            "valorMensal": 454.80,
+            "valorTotal": 454.80
+        }
+    ],
+    "descontosAcrescimos": [
+        {
+            "conta": "    5.DESCONTOS/ACRÉSCIMOS",
+            "valorMensal": -2458.71,
+            "valorTotal": -2458.71
+        },
+        {
+            "conta": "        5.1 ETANOL HIDRATADO COMB.",
+            "valorMensal": -0.03,
+            "valorTotal": -0.03
+        },
+        {
+            "conta": "        5.2 GASOLINA ORIGINAL C",
+            "valorMensal": -332.11,
+            "valorTotal": -332.11
+        },
+        {
+            "conta": "        5.3 GASOLINA ORIGINAL C ADITIV",
+            "valorMensal": -81.79,
+            "valorTotal": -81.79
+        },
+        {
+            "conta": "        5.4 ÓLEO DIESEL B S-10 ORIGINA",
+            "valorMensal": -440.15,
+            "valorTotal": -440.15
+        },
+        {
+            "conta": "        5.5 Ó DIE B S500 ORIGINAL",
+            "valorMensal": -1494.82,
+            "valorTotal": -1494.82
+        },
+        {
+            "conta": "        5.6 ADITIVOS",
+            "valorMensal": -3.78,
+            "valorTotal": -3.78
+        },
+        {
+            "conta": "        5.7 LUBRIFICANTES",
+            "valorMensal": -106.42,
+            "valorTotal": -106.42
+        },
+        {
+            "conta": "        5.8 EXTINTOR",
+            "valorMensal": -73.50,
+            "valorTotal": -73.50
+        },
+        {
+            "conta": "        5.9 FLUIDOS",
+            "valorMensal": -3.18,
+            "valorTotal": -3.18
+        },
+        {
+            "conta": "        5.10 FILTROS",
+            "valorMensal": -21.08,
+            "valorTotal": -21.08
+        },
+        {
+            "conta": "        5.11 OUTROS",
+            "valorMensal": -30.00,
+            "valorTotal": -30.00
+        }
+    ]
+}
