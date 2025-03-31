@@ -6,11 +6,7 @@ import { ReportConfig } from '../../models/report-config.model';
 import { ReportData } from '../../models/report-data.model';
 import { ReportPage, ReportElement as ConfigReportElement } from '../../models/report-config.model';
 import { 
-    ReportElement, 
     ReportTextElement, 
-    ReportTableElement, 
-    ReportChartElement, 
-    ReportImageElement 
 } from '../../models/report-element.model';
 
 // Standalone components
@@ -61,9 +57,6 @@ export class ReportViewerComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        console.log('ReportViewerComponent: ngOnInit - Iniciando carregamento...');
-        console.log('ReportViewerComponent: Caminho do config:', this.reportConfigPath);
-        
         // Solução temporária: criar um relatório estático
         this.createStaticReport();
         
@@ -74,7 +67,6 @@ export class ReportViewerComponent implements OnInit {
     // Cria um relatório estático para demonstração
     createStaticReport(): void {
         this.isLoading = true;
-        console.log('⚡ ReportViewerComponent.createStaticReport: Criando relatório estático');
         
         // Definir dados estáticos mais simples
         this.reportData = {
@@ -114,22 +106,13 @@ export class ReportViewerComponent implements OnInit {
             ]
         };
         
-        console.log('ReportViewerComponent: Relatório estático criado');
-        console.log('ReportViewerComponent: reportConfig =', this.reportConfig);
-        console.log('ReportViewerComponent: reportData =', this.reportData);
-        
-        // Garantir que os logs apareçam
-        console.log('✅ ReportViewerComponent: Relatório estático criado com sucesso!');
-        
         this.isLoading = false;
     }
 
     async loadReportConfig(): Promise<void> {
         try {
             this.isLoading = true;
-            console.log('Carregando configuração do relatório:', this.reportConfigPath);
             this.reportConfig = await this.reportService.loadReportConfig(this.reportConfigPath);
-            console.log('Configuração carregada:', this.reportConfig);
 
             // Definir template padrão
             if (this.reportConfig?.preferences?.template) {
@@ -141,7 +124,6 @@ export class ReportViewerComponent implements OnInit {
             }
 
             this.isLoading = false;
-            console.log('Página atual:', this.getCurrentPage());
         } catch (err) {
             console.error('Erro ao carregar configuração:', err);
             this.error = `Erro ao carregar configuração: ${err instanceof Error ? err.message : 'Erro desconhecido'}`;
@@ -151,9 +133,7 @@ export class ReportViewerComponent implements OnInit {
 
     async loadReportData(dataSource: string): Promise<void> {
         try {
-            console.log('Carregando dados do relatório:', dataSource);
             this.reportData = await this.reportService.loadReportData(dataSource);
-            console.log('Dados carregados:', this.reportData);
         } catch (err) {
             console.error('Erro ao carregar dados:', err);
             this.error = `Erro ao carregar dados: ${err instanceof Error ? err.message : 'Erro desconhecido'}`;
@@ -161,7 +141,6 @@ export class ReportViewerComponent implements OnInit {
     }
 
     onParametersChange(parameters: { [key: string]: any }): void {
-        console.log('Parâmetros atualizados:', parameters);
         // Adicione lógica para atualizar os dados do relatório com base nos parâmetros
     }
 
@@ -276,23 +255,14 @@ export class ReportViewerComponent implements OnInit {
 
     // Método para obter dados da fonte
     getElementData(element: ConfigReportElement): any[] {
-        console.log('getElementData - Element:', element);
-        console.log('getElementData - ReportData:', this.reportData);
-        
-        if ('dataSource' in element && element.dataSource) {
-            const dataSourceName = element.dataSource;
-            console.log('getElementData - DataSource Name:', dataSourceName);
+        if ('dataSource' in element && element['dataSource']) {
+            const dataSourceName = element['dataSource'];
             
             if (this.reportData && this.reportData[dataSourceName]) {
-                console.log('getElementData - Dados encontrados:', this.reportData[dataSourceName]);
                 return this.reportData[dataSourceName];
-            } else {
-                console.warn('getElementData - Dados NÃO encontrados para:', dataSourceName);
-                return [];
             }
         }
         
-        console.warn('getElementData - Sem dataSource no elemento');
         return [];
     }
 }

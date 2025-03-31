@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { TemplateService } from '../../services/template.service';
-import { ReportTemplate } from '../../models/report-template.model';
 import { CommonModule } from '@angular/common';
 
 @Component({

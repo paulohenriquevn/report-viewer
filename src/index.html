@@ -8,9 +8,12 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   
-  <!-- Pré-inicialização -->
+  <!-- Console de logs desativado -->
   <script>
-    // Garantir que os logs funcionem antes do carregamento do Angular
+    // Logs foram desabilitados
+    
+    // Para reativar os logs visuais, descomente o código abaixo:
+    /*
     console.log = (function(originalConsoleLog) {
       return function() {
         // Criar um log visível no DOM
@@ -48,17 +51,7 @@
         originalConsoleLog.apply(console, arguments);
       };
     })(console.log);
-    
-    // Registrar mensagem inicial
-    console.log('Log visual inicializado - ' + new Date().toISOString());
-    
-    // Interceptar erros
-    window.onerror = function(message, source, lineno, colno, error) {
-      console.log('❌ ERRO: ' + message + ' (linha ' + lineno + ')');
-      return false;
-    };
-    
-    console.log('HTML carregado, aguardando Angular...');
+    */
   </script>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
@@ -69,6 +62,8 @@
   
   <app-root></app-root>
   
+  <!-- Scripts de inicialização desativados -->
+  <!--
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       console.log('✅ DOMContentLoaded ativado');
@@ -78,5 +73,6 @@
       console.log('✅ Window onload ativado');
     };
   </script>
+  -->
 </body>
 </html>

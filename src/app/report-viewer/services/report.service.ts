@@ -22,13 +22,10 @@ export class ReportService {
      * @returns Promise com a configuração do relatório
      */
     loadReportConfig(configPath: string): Promise<ReportConfig> {
-        console.log('ReportService: Carregando configuração do relatório:', configPath);
-        
         // Solução alternativa: carregar dados estáticos direto do código
         // se estivermos usando o arquivo simple-report.json
         if (configPath.includes('simple-report.json')) {
-            console.log('ReportService: Usando configuração estática');
-            const staticConfig = {
+            const staticConfig: ReportConfig = {
                 "reportName": "Relatório de Demonstração",
                 "author": "Sistema BI",
                 "createdAt": "2025-03-31T10:00:00",
@@ -99,7 +96,6 @@ export class ReportService {
         // Comportamento normal usando HTTP
         return firstValueFrom(this.http.get<ReportConfig>(configPath))
             .then(config => {
-                console.log('ReportService: Configuração carregada com sucesso:', config);
                 // Ensure default values
                 return {
                     ...config,
@@ -108,7 +104,7 @@ export class ReportService {
                 };
             })
             .catch(error => {
-                console.error('ReportService: Erro ao carregar configuração:', error);
+                console.error('Erro ao carregar configuração:', error);
                 throw error;
             });
     }
@@ -119,12 +115,8 @@ export class ReportService {
      * @returns Promise com os dados do relatório
      */
     async loadReportData(dataSource: string): Promise<ReportData> {
-        console.log('ReportService: Carregando dados do relatório:', dataSource);
-        
         // Solução alternativa: carregar dados estáticos direto do código
         if (dataSource.includes('sales-data.json')) {
-            console.log('ReportService: Usando dados estáticos');
-            
             const staticData = {
                 "salesByRegion": [
                     {
@@ -187,10 +179,9 @@ export class ReportService {
         // Comportamento normal usando HTTP
         try {
             const data = await firstValueFrom(this.http.get<ReportData>(dataSource));
-            console.log('ReportService: Dados carregados com sucesso:', data);
             return data;
         } catch (error) {
-            console.error('ReportService: Erro ao carregar dados:', error);
+            console.error('Erro ao carregar dados:', error);
             throw error;
         }
     }
@@ -231,7 +222,6 @@ export class ReportService {
     async applyParameters(parameters: any): Promise<ReportData> {
         // Em um ambiente real, os parâmetros seriam enviados para o servidor
         // ou processados localmente para filtrar os dados
-        console.log('Aplicando parâmetros:', parameters);
         if (!this.reportData) {
             throw new Error('Report data is not loaded');
         }

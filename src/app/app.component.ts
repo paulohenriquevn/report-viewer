@@ -42,12 +42,10 @@ export class AppComponent implements OnInit {
   error = '';
   
   // Caminho para o arquivo de configuração do relatório
-  reportConfigPath = './assets/reports/configs/simple-report.json';
+  reportConfigPath = './assets/reports/configs/report-config.json';
   
   ngOnInit() {
-    console.log('AppComponent: ngOnInit executado');
     setTimeout(() => {
-      console.log('AppComponent: Tempo de carregamento finalizado');
       this.isLoading = false;
     }, 2000);
   }

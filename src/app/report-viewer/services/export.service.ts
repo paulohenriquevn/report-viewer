@@ -15,8 +15,6 @@ export class ExportService {
         // Em um ambiente real, usaríamos bibliotecas como jsPDF
         // ou chamaríamos um serviço de backend para gerar o PDF
 
-        console.log('Exportando para PDF:', reportConfig.reportName);
-
         // Simula tempo de processamento
         await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -29,8 +27,7 @@ export class ExportService {
      */
     async exportToExcel(reportConfig: ReportConfig, reportData: ReportData, options?: any): Promise<Blob> {
         // Em um ambiente real, usaríamos bibliotecas como ExcelJS
-        console.log('Exportando para Excel:', reportConfig.reportName);
-
+        
         // Simula tempo de processamento
         await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -42,8 +39,6 @@ export class ExportService {
      * Exporta relatório para CSV
      */
     async exportToCSV(reportConfig: ReportConfig, reportData: ReportData, options?: any): Promise<Blob> {
-        console.log('Exportando para CSV:', reportConfig.reportName);
-
         // Encontra a primeira tabela no relatório
         let tableData = null;
         let columns: { header: string; field: string }[] = [];
@@ -86,8 +81,7 @@ export class ExportService {
      */
     async exportToImage(reportConfig: ReportConfig, reportData: ReportData, options?: any): Promise<Blob> {
         // Em um ambiente real, usaríamos bibliotecas como html2canvas
-        console.log('Exportando para imagem:', reportConfig.reportName);
-
+        
         // Simula tempo de processamento
         await new Promise(resolve => setTimeout(resolve, 1000));
 

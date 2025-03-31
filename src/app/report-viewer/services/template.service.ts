@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
 import { ReportTemplate } from '../models/report-template.model';
 import { ReportConfig } from '../models/report-config.model';
 
