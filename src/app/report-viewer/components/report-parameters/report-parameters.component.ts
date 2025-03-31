@@ -1,10 +1,14 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ReportParameter } from '../../models/report-config.model';
 
 @Component({
     selector: 'app-report-parameters',
     templateUrl: './report-parameters.component.html',
-    styleUrls: ['./report-parameters.component.scss']
+    styleUrls: ['./report-parameters.component.scss'],
+    standalone: true,
+    imports: [CommonModule, FormsModule]
 })
 export class ReportParametersComponent implements OnInit, OnChanges {
     @Input() parameters: ReportParameter[] = [];

@@ -1,13 +1,32 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ReportService } from '../../services/report.service';
 import { TemplateService } from '../../services/template.service';
 import { ReportConfig } from '../../models/report-config.model';
 import { ReportData } from '../../models/report-data.model';
+import { TemplateManagerComponent } from '../template-manager/template-manager.component';
+import { ReportParametersComponent } from '../report-parameters/report-parameters.component';
+import { TableRendererComponent } from '../table-renderer/table-renderer.component';
+import { ChartRendererComponent } from '../chart-renderer/chart-renderer.component';
+import { ImageRendererComponent } from '../image-renderer/image-renderer.component';
+import { TextRendererComponent } from '../text-renderer/text-renderer.component';
+import { HighlightSearchDirective } from '../../directives/highlight-search.directive';
 
 @Component({
     selector: 'app-report-viewer',
     templateUrl: './report-viewer.component.html',
-    styleUrls: ['./report-viewer.component.scss']
+    styleUrls: ['./report-viewer.component.scss'],
+    standalone: true,
+    imports: [
+        CommonModule,
+        TemplateManagerComponent,
+        ReportParametersComponent,
+        TableRendererComponent,
+        ChartRendererComponent,
+        ImageRendererComponent,
+        TextRendererComponent,
+        HighlightSearchDirective
+    ]
 })
 export class ReportViewerComponent implements OnInit {
     @Input() reportConfigPath!: string;

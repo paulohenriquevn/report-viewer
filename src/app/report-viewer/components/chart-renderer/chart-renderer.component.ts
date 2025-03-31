@@ -1,11 +1,14 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import ApexCharts from 'apexcharts';
 import { ReportChartElement } from '../../models/report-chart-element.model';
 
 @Component({
     selector: 'app-chart-renderer',
     templateUrl: './chart-renderer.component.html',
-    styleUrls: ['./chart-renderer.component.scss']
+    styleUrls: ['./chart-renderer.component.scss'],
+    standalone: true,
+    imports: [CommonModule]
 })
 export class ChartRendererComponent implements OnChanges, AfterViewInit {
     @Input() chartElement!: ReportChartElement;

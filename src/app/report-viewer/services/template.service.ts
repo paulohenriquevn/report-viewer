@@ -218,72 +218,80 @@ export class TemplateService {
      * @param templateId ID do template
      */
     async applyTemplate(reportConfig: ReportConfig, templateId: string): Promise<ReportConfig> {
-        const template = await this.getTemplate(templateId);
-
-        // Deep clone para não modificar o original
-        const newConfig: ReportConfig = JSON.parse(JSON.stringify(reportConfig));
-
-        // Aplica configurações do template
-        if (!newConfig.preferences) {
-            newConfig.preferences = {};
-        }
-
-        // Aplica fontes e cores padrão
-        newConfig.preferences.defaultFont = template.fonts.body;
-        newConfig.preferences.template = templateId;
-
-        // Aplica estilos às páginas
-        newConfig.pages.forEach(page => {
-            // Define a fonte padrão da página
-            page.fontFamily = template.fonts.body;
-
-            // Aplica estilos aos elementos
-            if (page.elements) {
-                page.elements.forEach(element => {
-                    switch (element.type) {
-                        case 'text':
-                            // Verifica se é um título
-                            if ((element as any).fontSize >= 18 && (element as any).bold) {
-                                (element as any).fontFamily = template.fonts.heading;
-                                (element as any).color = (element as any).color || template.styles.headings.color;
-                            }
-                            break;
-
-                        case 'table':
-                            // Aplica estilos à tabela
-                            if (!(element as any).headerStyle) {
-                                (element as any).headerStyle = {};
-                            }
-                            (element as any).headerStyle.backgroundColor = template.styles.tables.headerBg;
-                            (element as any).headerStyle.color = template.styles.tables.headerColor;
-
-                            if (!(element as any).cellStyle) {
-                                (element as any).cellStyle = {};
-                            }
-                            (element as any).cellStyle.borderColor = template.styles.tables.borderColor;
-
-                            if (template.styles.tables.zebraStripe) {
-                                (element as any).zebraStripe = true;
-                                (element as any).zebraColor = template.styles.tables.zebraColor;
-                            }
-                            break;
-
-                        case 'chart':
-                            // Aplica paleta de cores aos gráficos
-                            if ((element as any).series) {
-                                (element as any).series.forEach((serie: any, index: number) => {
-                                    if (!serie.color) {
-                                        serie.color = template.styles.charts.colors[index % template.styles.charts.colors.length];
-                                    }
-                                });
-                            }
-                            break;
-                    }
-                });
+        try {
+            const template = await this.getTemplate(templateId);
+            if (!template) {
+                throw new Error(`Template ${templateId} não encontrado`);
             }
-        });
 
-        return newConfig;
+            // Deep clone para não modificar o original
+            const newConfig: ReportConfig = JSON.parse(JSON.stringify(reportConfig));
+
+            // Aplica configurações do template
+            if (!newConfig.preferences) {
+                newConfig.preferences = {};
+            }
+
+            // Aplica fontes e cores padrão
+            newConfig.preferences.defaultFont = template.fonts.body;
+            newConfig.preferences.template = templateId;
+
+            // Aplica estilos às páginas
+            newConfig.pages.forEach(page => {
+                // Define a fonte padrão da página
+                page.fontFamily = template.fonts.body;
+
+                // Aplica estilos aos elementos
+                if (page.elements) {
+                    page.elements.forEach(element => {
+                        switch (element.type) {
+                            case 'text':
+                                // Verifica se é um título
+                                if ((element as any).fontSize >= 18 && (element as any).bold) {
+                                    (element as any).fontFamily = template.fonts.heading;
+                                    (element as any).color = (element as any).color || template.styles.headings.color;
+                                }
+                                break;
+
+                            case 'table':
+                                // Aplica estilos à tabela
+                                if (!(element as any).headerStyle) {
+                                    (element as any).headerStyle = {};
+                                }
+                                (element as any).headerStyle.backgroundColor = template.styles.tables.headerBg;
+                                (element as any).headerStyle.color = template.styles.tables.headerColor;
+
+                                if (!(element as any).cellStyle) {
+                                    (element as any).cellStyle = {};
+                                }
+                                (element as any).cellStyle.borderColor = template.styles.tables.borderColor;
+
+                                if (template.styles.tables.zebraStripe) {
+                                    (element as any).zebraStripe = true;
+                                    (element as any).zebraColor = template.styles.tables.zebraColor;
+                                }
+                                break;
+
+                            case 'chart':
+                                // Aplica paleta de cores aos gráficos
+                                if ((element as any).series) {
+                                    (element as any).series.forEach((serie: any, index: number) => {
+                                        if (!serie.color) {
+                                            serie.color = template.styles.charts.colors[index % template.styles.charts.colors.length];
+                                        }
+                                    });
+                                }
+                                break;
+                        }
+                    });
+                }
+            });
+
+            return newConfig;
+        } catch (error) {
+            console.error('Erro ao aplicar template:', error);
+            throw error;
+        }
     }
 
     /**

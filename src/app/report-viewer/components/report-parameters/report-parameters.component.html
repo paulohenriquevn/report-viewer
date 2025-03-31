@@ -15,12 +15,13 @@
                         <span *ngIf="param.required" class="text-red-500 ml-1">*</span>
                     </label>
 
-                    <input type="text" [id]="'param-' + param
-              type=" text" [id]="'param-' + param.name" [name]="'param-' + param.name"
-                        [placeholder]="param.placeholder || ''" [disabled]="param.readOnly"
-                        [ngClass]="{'border-red-500': errors[param.name]}" [(ngModel)]="paramValues[param.name]"
-                        (input)="handleParamChange(param.name, $event.target.value)"
-                        class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <input type="text" [id]="'param-' + param.name" 
+                    [name]="'param-' + param.name"
+                    [placeholder]="param.placeholder || ''"
+                    [disabled]="param.readOnly"
+                    [(ngModel)]="paramValues[param.name]"
+                    (input)="handleParamChange(param.name, $event.target.value)"
+                    class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
                 </ng-container>
 
                 <!-- Parâmetro Numérico -->

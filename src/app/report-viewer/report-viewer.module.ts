@@ -29,8 +29,14 @@ import { HighlightSearchDirective } from './directives/highlight-search.directiv
 import { ZoomDirective } from './directives/zoom.directive';
 
 @NgModule({
-    declarations: [
-        // Componentes
+    imports: [
+        // Módulos
+        CommonModule,
+        FormsModule,
+        HttpClientModule,
+        NgApexchartsModule,
+        
+        // Componentes standalone
         ReportViewerComponent,
         ReportParametersComponent,
         ChartRendererComponent,
@@ -38,20 +44,14 @@ import { ZoomDirective } from './directives/zoom.directive';
         TextRendererComponent,
         ImageRendererComponent,
         TemplateManagerComponent,
-
-        // Pipes
+        
+        // Pipes standalone
         SafeHtmlPipe,
         FormatValuePipe,
-
-        // Diretivas
+        
+        // Diretivas standalone
         HighlightSearchDirective,
         ZoomDirective
-    ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        HttpClientModule,
-        NgApexchartsModule
     ],
     providers: [
         ReportService,
@@ -66,4 +66,3 @@ import { ZoomDirective } from './directives/zoom.directive';
     ]
 })
 export class ReportViewerModule { }
-
