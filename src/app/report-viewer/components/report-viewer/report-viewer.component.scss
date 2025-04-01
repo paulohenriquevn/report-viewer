@@ -9,6 +9,16 @@
 .report-content-wrapper {
     position: relative;
     width: 100%;
+    height: calc(100vh - 100px); /* Altura dinâmica com base na viewport */
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2rem; /* Espaço extra no fim */
+    
+    /* Ajuste responsivo da altura */
+    @media (max-width: 767px) {
+        height: calc(100vh - 80px);
+    }
 }
 
 .report-scroll-container {
@@ -16,6 +26,13 @@
     overflow-x: auto;
     overflow-y: visible;
     padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    
+    /* Padding responsivo para diferentes telas */
+    @media (max-width: 767px) {
+        padding: 0.5rem 0 2rem 0;
+    }
     
     /* Personalização da barra de rolagem */
     scrollbar-width: thin;
@@ -86,24 +103,119 @@
     }
 }
 
-/* A4 paper format styles */
+/* A4 paper format styles - totalmente responsivo */
 .a4-page {
+    --a4-width: 210mm;
+    --a4-height: 297mm;
+    --a4-ratio: calc(297 / 210);
+    
     background-color: white;
-    width: 210mm;
-    min-height: 297mm;
-    padding: 0;
-    margin: 1rem auto;
-    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.2);
     position: relative;
+    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.2);
+    margin: 1rem auto 2rem auto; /* Margem inferior para espaço extra */
+    padding: 0;
+    max-width: 100%; /* Garante que nunca ultrapassa o container pai */
+    overflow: visible; /* Mostra todo o conteúdo */
+    height: auto; /* Altura ajustável ao conteúdo */
+    
+    /* Sistema responsivo baseado em viewport e calculado pela proporção A4 */
+    @media (min-width: 1200px) {
+        /* Telas grandes - tamanho A4 real */
+        width: var(--a4-width);
+        min-height: var(--a4-height);
+        font-size: 1rem; /* Tamanho base de fonte */
+    }
+    
+    @media (min-width: 900px) and (max-width: 1199px) {
+        /* Telas médias-grandes */
+        width: 95%;
+        max-width: var(--a4-width);
+        min-height: calc(width * var(--a4-ratio));
+        font-size: 1rem;
+    }
+    
+    @media (min-width: 768px) and (max-width: 899px) {
+        /* Tablets e telas médias */
+        width: 95%;
+        max-width: var(--a4-width);
+        min-height: 0; /* Remove min-height fixa */
+        font-size: 0.95rem; /* Redução de 5% na fonte */
+    }
+    
+    @media (min-width: 600px) and (max-width: 767px) {
+        /* Dispositivos pequenos (tablets pequenos) */
+        width: 95%;
+        max-width: 100%;
+        min-height: 0;
+        font-size: 0.9rem; /* Redução de 10% na fonte */
+    }
+    
+    @media (max-width: 599px) {
+        /* Dispositivos muito pequenos (celulares) */
+        width: 98%;
+        max-width: 100%;
+        min-height: 0;
+        font-size: 0.85rem; /* Redução de 15% na fonte */
+    }
+    
+    /* Fix específico para resolução 700x700 */
+    @media (min-width: 680px) and (max-width: 720px) {
+        width: 95%;
+        max-width: 100%;
+        font-size: 0.85rem; /* Redução de 15% na fonte */
+        
+        /* Escala sutil para melhor ajuste */
+        transform: scale(0.98);
+        transform-origin: center top;
+    }
 }
 
 .page-container {
     position: relative;
     background-color: white;
-    padding: 2rem;
     transition: transform 0.3s ease;
     margin: 0;
-    height: 100%;
+    height: auto; /* Altura dinâmica baseada no conteúdo */
+    min-height: 100%;
+    overflow: visible; /* Permitir que o conteúdo seja totalmente visível */
+    box-sizing: border-box;
+    
+    /* Padding responsivo com base no tamanho da tela */
+    @media (min-width: 1200px) {
+        padding: 2.5rem;
+    }
+    
+    @media (min-width: 900px) and (max-width: 1199px) {
+        padding: 2rem;
+    }
+    
+    @media (min-width: 768px) and (max-width: 899px) {
+        padding: 1.8rem;
+    }
+    
+    @media (min-width: 600px) and (max-width: 767px) {
+        padding: 1.5rem;
+    }
+    
+    @media (max-width: 599px) {
+        padding: 1rem;
+    }
+    
+    /* Ajuste para resolução 700x700 */
+    @media (min-width: 680px) and (max-width: 720px) {
+        padding: 1.2rem;
+        
+        /* Redução da margem entre elementos */
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0.7em;
+            margin-bottom: 0.7em;
+        }
+        
+        p, div {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+    }
 }
 
 // Professional toolbar styling
@@ -182,17 +294,69 @@ button {
 table {
     border-collapse: collapse;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    
+    /* Tabelas responsivas - scroll horizontal em telas menores */
+    @media (max-width: 767px) {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
     
     th {
         background-color: #f1f5f9;
         font-weight: 600;
         text-align: left;
-        padding: 0.75rem 1rem;
+        
+        /* Ajuste responsivo de padding */
+        @media (min-width: 1200px) {
+            padding: 0.75rem 1rem;
+        }
+        
+        @media (min-width: 768px) and (max-width: 1199px) {
+            padding: 0.6rem 0.8rem;
+        }
+        
+        @media (max-width: 767px) {
+            padding: 0.5rem 0.6rem;
+            font-size: 0.9em;
+        }
+        
+        /* Truncar cabeçalhos em resoluções específicas */
+        @media (min-width: 680px) and (max-width: 720px) {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100px;
+            padding: 0.4rem;
+            font-size: 0.85em;
+        }
     }
     
     td {
-        padding: 0.75rem 1rem;
         border-bottom: 1px solid #e2e8f0;
+        
+        /* Ajuste responsivo de padding */
+        @media (min-width: 1200px) {
+            padding: 0.75rem 1rem;
+        }
+        
+        @media (min-width: 768px) and (max-width: 1199px) {
+            padding: 0.6rem 0.8rem;
+        }
+        
+        @media (max-width: 767px) {
+            padding: 0.5rem 0.6rem;
+            font-size: 0.9em;
+        }
+        
+        /* Ajustes específicos para resolução 700x700 */
+        @media (min-width: 680px) and (max-width: 720px) {
+            padding: 0.4rem;
+            font-size: 0.85em;
+            word-break: break-word;
+        }
     }
     
     tr:hover td {

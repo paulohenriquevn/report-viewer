@@ -67,6 +67,9 @@ export class ReportViewerComponent implements OnInit {
         
         // Adicionar listeners para detectar scrollabilidade
         setTimeout(() => this.setupScrollIndicators(), 500);
+        
+        // Adicionar listener para redimensionamento da janela
+        window.addEventListener('resize', () => this.adjustPageVisibilityForResponsiveness());
     }
     
     setupScrollIndicators(): void {
@@ -133,6 +136,9 @@ export class ReportViewerComponent implements OnInit {
             }
 
             this.isLoading = false;
+            
+            // Ajustar a exibição responsiva após carregar
+            setTimeout(() => this.adjustPageVisibilityForResponsiveness(), 300);
         } catch (err) {
             console.error('Erro ao carregar configuração:', err);
             this.error = `Erro ao carregar configuração: ${err instanceof Error ? err.message : 'Erro desconhecido'}`;
@@ -167,21 +173,71 @@ export class ReportViewerComponent implements OnInit {
 
     onZoomIn(): void {
         this.zoomLevel = Math.min(200, this.zoomLevel + 25);
+        // Ajustar a visibilidade após o zoom
+        this.adjustPageVisibilityForResponsiveness();
     }
 
     onZoomOut(): void {
         this.zoomLevel = Math.max(50, this.zoomLevel - 25);
+        // Ajustar a visibilidade após o zoom
+        this.adjustPageVisibilityForResponsiveness();
     }
     
     onZoomChange(event: Event): void {
         const target = event.target as HTMLSelectElement;
         this.zoomLevel = parseInt(target.value, 10);
-        
+        // Ajustar a visibilidade após o zoom
+        this.adjustPageVisibilityForResponsiveness();
+    }
+    
+    /**
+     * Ajusta a visibilidade da página de acordo com o tamanho da tela
+     * para garantir responsividade e que o conteúdo não seja cortado
+     */
+    adjustPageVisibilityForResponsiveness(): void {
         // Atualizar indicadores de scroll após mudança de zoom
         setTimeout(() => {
             const scrollContainer = document.querySelector('.report-scroll-container');
-            if (scrollContainer) {
+            const a4Page = document.querySelector('.a4-page');
+            const reportWrapper = document.querySelector('.report-content-wrapper');
+            
+            if (scrollContainer && a4Page && reportWrapper) {
+                // Verificar scrollabilidade
                 this.checkScrollability(scrollContainer as HTMLElement);
+                
+                // Ajustes responsivos baseados no tamanho da tela
+                const containerWidth = scrollContainer.clientWidth;
+                const htmlA4Page = a4Page as HTMLElement;
+                const viewportWidth = window.innerWidth;
+                
+                // Centralizar horizontalmente
+                if (htmlA4Page.offsetWidth > containerWidth) {
+                    scrollContainer.scrollLeft = (htmlA4Page.offsetWidth - containerWidth) / 2;
+                } else {
+                    scrollContainer.scrollLeft = 0;
+                }
+                
+                // Aplicar ajustes de tamanho de fonte baseados no viewport
+                if (viewportWidth <= 700) {
+                    // Telas pequenas - ajuste de fonte mais agressivo
+                    htmlA4Page.style.fontSize = '0.85em';
+                } else if (viewportWidth > 700 && viewportWidth < 900) {
+                    // Telas médias
+                    htmlA4Page.style.fontSize = '0.9em';
+                }
+                
+                // Caso especial para resolução 700x700
+                if (viewportWidth >= 680 && viewportWidth <= 720) {
+                    // Ajustes específicos para essa resolução
+                    htmlA4Page.style.fontSize = '0.8em';
+                    
+                    // Ajustar espaçamentos
+                    const containers = a4Page.querySelectorAll('.mb-8');
+                    containers.forEach((container) => {
+                        const el = container as HTMLElement;
+                        el.style.marginBottom = '1rem';
+                    });
+                }
             }
         }, 100);
     }
