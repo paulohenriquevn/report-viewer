@@ -5,6 +5,87 @@
     background-color: #f8fafc;
 }
 
+/* Container para scroll lateral */
+.report-content-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.report-scroll-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 1rem 0;
+    
+    /* Personalização da barra de rolagem */
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+    
+    &::-webkit-scrollbar {
+        height: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 4px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: #cbd5e1;
+        border-radius: 4px;
+        
+        &:hover {
+            background-color: #94a3b8;
+        }
+    }
+}
+
+/* Indicadores de scroll */
+.scroll-indicators {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 5;
+    
+    .scroll-indicator-left,
+    .scroll-indicator-right {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #cbd5e1;
+        opacity: 0;
+        transition: opacity 0.2s ease, color 0.2s ease;
+        cursor: pointer;
+        pointer-events: auto;
+        
+        &.active {
+            opacity: 1;
+            color: #1e40af;
+        }
+        
+        &:hover.active {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+    }
+    
+    .scroll-indicator-left {
+        margin-left: -16px;
+    }
+    
+    .scroll-indicator-right {
+        margin-right: -16px;
+    }
+}
+
 /* A4 paper format styles */
 .a4-page {
     background-color: white;
@@ -14,7 +95,6 @@
     margin: 1rem auto;
     box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.2);
     position: relative;
-    overflow: hidden;
 }
 
 .page-container {

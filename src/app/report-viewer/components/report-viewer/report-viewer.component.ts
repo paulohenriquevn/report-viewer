@@ -50,6 +50,8 @@ export class ReportViewerComponent implements OnInit {
     isLoading: boolean = false;
     error: string | null = null;
     selectedTemplate: string = '';
+    canScrollLeft: boolean = false;
+    canScrollRight: boolean = false;
 
     constructor(
         private reportService: ReportService,
@@ -62,6 +64,52 @@ export class ReportViewerComponent implements OnInit {
         
         // Método original (desativado temporariamente)
         setTimeout(() => this.loadReportConfig(), 100);
+        
+        // Adicionar listeners para detectar scrollabilidade
+        setTimeout(() => this.setupScrollIndicators(), 500);
+    }
+    
+    setupScrollIndicators(): void {
+        const scrollContainer = document.querySelector('.report-scroll-container');
+        if (scrollContainer) {
+            // Verificar inicialmente
+            this.checkScrollability(scrollContainer as HTMLElement);
+            
+            // Verificar durante o scroll
+            scrollContainer.addEventListener('scroll', () => {
+                this.checkScrollability(scrollContainer as HTMLElement);
+            });
+            
+            // Adicionar clique nos indicadores
+            const leftIndicator = document.querySelector('.scroll-indicator-left');
+            const rightIndicator = document.querySelector('.scroll-indicator-right');
+            
+            if (leftIndicator) {
+                leftIndicator.addEventListener('click', () => {
+                    scrollContainer.scrollLeft -= 100;
+                });
+            }
+            
+            if (rightIndicator) {
+                rightIndicator.addEventListener('click', () => {
+                    scrollContainer.scrollLeft += 100;
+                });
+            }
+            
+            // Atualizar quando o zoom mudar
+            window.addEventListener('resize', () => {
+                this.checkScrollability(scrollContainer as HTMLElement);
+            });
+        }
+    }
+    
+    checkScrollability(element: HTMLElement): void {
+        // Verificar se pode rolar para a esquerda
+        this.canScrollLeft = element.scrollLeft > 0;
+        
+        // Verificar se pode rolar para a direita
+        this.canScrollRight = element.scrollWidth > element.clientWidth && 
+                             element.scrollLeft < (element.scrollWidth - element.clientWidth);
     }
     
     // Cria um relatório estático para demonstração
@@ -128,6 +176,14 @@ export class ReportViewerComponent implements OnInit {
     onZoomChange(event: Event): void {
         const target = event.target as HTMLSelectElement;
         this.zoomLevel = parseInt(target.value, 10);
+        
+        // Atualizar indicadores de scroll após mudança de zoom
+        setTimeout(() => {
+            const scrollContainer = document.querySelector('.report-scroll-container');
+            if (scrollContainer) {
+                this.checkScrollability(scrollContainer as HTMLElement);
+            }
+        }, 100);
     }
     
     goToPage(event: Event): void {
