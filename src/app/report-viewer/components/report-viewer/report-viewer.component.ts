@@ -118,11 +118,29 @@ export class ReportViewerComponent implements OnInit {
     }
 
     onZoomIn(): void {
-        this.zoomLevel = Math.min(200, this.zoomLevel + 10);
+        this.zoomLevel = Math.min(200, this.zoomLevel + 25);
     }
 
     onZoomOut(): void {
-        this.zoomLevel = Math.max(50, this.zoomLevel - 10);
+        this.zoomLevel = Math.max(50, this.zoomLevel - 25);
+    }
+    
+    onZoomChange(event: Event): void {
+        const target = event.target as HTMLSelectElement;
+        this.zoomLevel = parseInt(target.value, 10);
+    }
+    
+    goToPage(event: Event): void {
+        const target = event.target as HTMLInputElement;
+        const page = parseInt(target.value, 10);
+        
+        if (this.reportConfig && 
+            page >= 1 && page <= this.reportConfig.pages.length) {
+            this.selectedPage = page - 1;
+        } else {
+            // Reset to current page if invalid
+            target.value = (this.selectedPage + 1).toString();
+        }
     }
 
     onSearch(event: Event): void {

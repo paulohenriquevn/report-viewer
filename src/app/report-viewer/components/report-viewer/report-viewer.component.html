@@ -1,61 +1,115 @@
 <div class="report-viewer">
-    <!-- Barra superior com controles -->
-    <div class="bg-white p-4 border-b">
-        <div class="flex flex-wrap justify-between items-center">
-            <!-- Título do relatório -->
-            <h1 class="text-xl font-semibold">
-                {{ reportConfig && reportConfig.reportName || 'Relatório' }}
-            </h1>
-
-            <!-- Controles de navegação e zoom -->
-            <div class="flex space-x-2">
-                <button 
-                    class="px-3 py-1 bg-gray-200 rounded-md hover:bg-gray-300"
-                    [disabled]="selectedPage === 0"
-                    (click)="onPrevPage()">
-                    &laquo; Anterior
-                </button>
-                <span class="px-3 py-1">
-                    Página {{ selectedPage + 1 }} de {{ reportConfig && reportConfig.pages ? reportConfig.pages.length : 1 }}
-                </span>
-                <button 
-                    class="px-3 py-1 bg-gray-200 rounded-md hover:bg-gray-300"
-                    [disabled]="!reportConfig || selectedPage >= reportConfig.pages.length - 1"
-                    (click)="onNextPage()">
-                    Próxima &raquo;
-                </button>
-                <button 
-                    class="px-3 py-1 bg-gray-200 rounded-md hover:bg-gray-300"
-                    (click)="onZoomOut()">
-                    -
-                </button>
-                <span class="px-3 py-1">{{ zoomLevel }}%</span>
-                <button 
-                    class="px-3 py-1 bg-gray-200 rounded-md hover:bg-gray-300"
-                    (click)="onZoomIn()">
-                    +
-                </button>
+    <!-- Barra superior com controles (estilo de ferramentas comerciais) -->
+    <div class="toolbar bg-slate-800 text-white p-3">
+        <div class="flex flex-wrap items-center justify-between">
+            <!-- Logo e título do relatório -->
+            <div class="flex items-center">
+                <div class="mr-3 p-1 bg-blue-600 rounded">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                <h1 class="text-xl font-semibold">
+                    {{ reportConfig && reportConfig.reportName || 'Relatório' }}
+                </h1>
             </div>
 
-            <!-- Pesquisa e exportação -->
-            <div class="flex mt-2 md:mt-0">
-                <input 
-                    type="text" 
-                    placeholder="Pesquisar" 
-                    class="px-3 py-1 border rounded-l-md"
-                    (input)="onSearch($event)" />
-                <select 
-                    class="px-3 py-1 border-t border-b border-r"
-                    (change)="onExportFormatChange($event)">
-                    <option value="pdf">PDF</option>
-                    <option value="excel">Excel</option>
-                    <option value="csv">CSV</option>
-                </select>
-                <button 
-                    class="px-3 py-1 bg-blue-500 text-white rounded-r-md hover:bg-blue-600"
-                    (click)="onExport()">
-                    Exportar
-                </button>
+            <!-- Grupos de ferramentas -->
+            <div class="flex items-center space-x-4">
+                <!-- Navegação de páginas -->
+                <div class="flex items-center bg-slate-700 rounded-md overflow-hidden">
+                    <button 
+                        class="px-3 py-2 text-white hover:bg-slate-600"
+                        [disabled]="selectedPage === 0"
+                        (click)="onPrevPage()">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="px-3 py-2 border-l border-r border-slate-600">
+                        <span class="mr-1">Página</span>
+                        <input 
+                            type="number" 
+                            [min]="1" 
+                            [max]="reportConfig && reportConfig.pages ? reportConfig.pages.length : 1"
+                            [value]="selectedPage + 1" 
+                            (change)="goToPage($event)"
+                            class="w-12 bg-slate-600 text-white text-center rounded px-1 py-0.5"
+                        >
+                        <span class="ml-1">de {{ reportConfig && reportConfig.pages ? reportConfig.pages.length : 1 }}</span>
+                    </div>
+                    <button 
+                        class="px-3 py-2 text-white hover:bg-slate-600"
+                        [disabled]="!reportConfig || selectedPage >= reportConfig.pages.length - 1"
+                        (click)="onNextPage()">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Zoom -->
+                <div class="flex items-center bg-slate-700 rounded-md overflow-hidden">
+                    <button 
+                        class="px-3 py-2 text-white hover:bg-slate-600"
+                        (click)="onZoomOut()">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                        </svg>
+                    </button>
+                    <div class="px-3 py-2 border-l border-r border-slate-600">
+                        <select 
+                            class="bg-slate-600 text-white rounded px-2 py-0.5"
+                            (change)="onZoomChange($event)">
+                            <option [selected]="zoomLevel === 50" value="50">50%</option>
+                            <option [selected]="zoomLevel === 75" value="75">75%</option>
+                            <option [selected]="zoomLevel === 100" value="100">100%</option>
+                            <option [selected]="zoomLevel === 125" value="125">125%</option>
+                            <option [selected]="zoomLevel === 150" value="150">150%</option>
+                            <option [selected]="zoomLevel === 200" value="200">200%</option>
+                        </select>
+                    </div>
+                    <button 
+                        class="px-3 py-2 text-white hover:bg-slate-600"
+                        (click)="onZoomIn()">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Pesquisa -->
+                <div class="flex items-center bg-slate-700 rounded-md overflow-hidden">
+                    <input 
+                        type="text" 
+                        placeholder="Pesquisar" 
+                        class="w-32 px-3 py-2 bg-slate-600 text-white border-none focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        (input)="onSearch($event)" />
+                    <button class="px-3 py-2 hover:bg-slate-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Exportação -->
+                <div class="flex items-center">
+                    <select 
+                        class="bg-slate-700 text-white border-none rounded-l-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        (change)="onExportFormatChange($event)">
+                        <option value="pdf">PDF</option>
+                        <option value="excel">Excel</option>
+                        <option value="csv">CSV</option>
+                    </select>
+                    <button 
+                        class="flex items-center bg-blue-600 hover:bg-blue-700 text-white rounded-r-md px-3 py-2"
+                        (click)="onExport()">
+                        <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                        Exportar
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -99,107 +153,117 @@
     </div>
 
     <!-- Conteúdo do relatório -->
-    <div class="flex flex-col md:flex-row">
-        <!-- Painel lateral com parâmetros e templates (se houver) -->
-        <div class="w-full md:w-1/4 p-4 bg-gray-50 border-r">
-            <!-- Parâmetros -->
-            <div *ngIf="reportConfig && reportConfig.parameters && reportConfig.parameters.length > 0">
-                <h2 class="text-lg font-semibold mb-2">Parâmetros</h2>
-                <app-report-parameters 
-                    [parameters]="reportConfig.parameters"
-                    (parametersChange)="onParametersChange($event)">
-                </app-report-parameters>
+    <div class="flex flex-col md:flex-row bg-gray-200">
+        <!-- Painel lateral com navegação, parâmetros e templates -->
+        <div class="w-full md:w-1/4 bg-white border-r shadow-md">
+            <!-- Abas de navegação -->
+            <div class="flex border-b">
+                <button class="px-4 py-3 text-blue-600 border-b-2 border-blue-600 font-medium">Páginas</button>
+                <button class="px-4 py-3 text-gray-500 hover:text-gray-700">Parâmetros</button>
+                <button class="px-4 py-3 text-gray-500 hover:text-gray-700">Templates</button>
             </div>
 
-            <!-- Templates -->
-            <div *ngIf="reportConfig && reportConfig.templates && reportConfig.templates.length > 0">
-                <h2 class="text-lg font-semibold my-2">Templates</h2>
-                <app-template-manager 
-                    [templates]="reportConfig.templates"
-                    [selectedTemplate]="selectedTemplate"
-                    (templateSelected)="onTemplateSelected($event)">
-                </app-template-manager>
-            </div>
-        </div>
-
-        <!-- Área principal com o conteúdo do relatório -->
-        <div class="w-full md:w-3/4 p-4">
-            <!-- Depuração: informações de contexto (desativadas) -->
-            <div *ngIf="false" class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-md text-sm">
-                <h3 class="font-semibold text-blue-700">Informações de Debug</h3>
-                <div class="mt-2 grid grid-cols-2 gap-2">
-                    <div><strong>Dados Carregados:</strong> {{ reportConfig && reportData ? 'Sim' : 'Não' }}</div>
-                    <div><strong>reportConfigPath:</strong> {{ reportConfigPath }}</div>
-                    <div><strong>Página Atual:</strong> {{ selectedPage }}</div>
-                    <div><strong>Páginas Disponíveis:</strong> {{ reportConfig['pages'] || 0 }}</div>
-                    <div><strong>Nome do Relatório:</strong> {{ reportConfig['reportName'] || 'N/A' }}</div>
-                    <div><strong>Fonte de Dados:</strong> {{ reportConfig['dataSource'] || 'N/A' }}</div>
-                </div>
-                
-                <div *ngIf="getCurrentPage()" class="mt-3 p-2 bg-white rounded border border-blue-100">
-                    <div><strong>Página:</strong> {{ getCurrentPage()?.name }}</div>
-                    <div><strong>Elementos:</strong> {{ getCurrentPage()?.elements?.length || 0 }}</div>
-                    <div *ngIf="getCurrentPage()?.elements?.length">
-                        <strong>Tipos de Elementos:</strong>
-                        <ul class="list-disc list-inside ml-2">
-                            <li *ngFor="let element of getCurrentPage()?.elements">
-                                {{ element.type }} 
-                                <span *ngIf="element.type === 'table' || element.type === 'chart'"> 
-                                    (DataSource: {{ element['dataSource'] || 'N/A' }})
-                                </span>
-                            </li>
-                        </ul>
+            <!-- Navegação de páginas com miniaturas -->
+            <div class="p-4">
+                <h3 class="text-sm font-medium text-gray-700 mb-3">PÁGINAS</h3>
+                <div class="space-y-4">
+                    <div *ngFor="let page of reportConfig?.pages; let i = index" 
+                         class="flex items-start p-2 rounded cursor-pointer"
+                         [class.bg-blue-50]="selectedPage === i"
+                         (click)="selectedPage = i">
+                        <!-- Miniatura -->
+                        <div class="w-16 h-22 bg-white border shadow-sm flex-shrink-0 flex items-center justify-center">
+                            <span class="text-xs text-gray-400">Página {{i+1}}</span>
+                        </div>
+                        <!-- Informações da página -->
+                        <div class="ml-3">
+                            <div class="text-sm font-medium" [class.text-blue-600]="selectedPage === i">
+                                {{ page.name }}
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">
+                                {{ page.elements?.length || 0 }} elementos
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
+            <!-- Parâmetros (mostrado condicionalmente) -->
+            <div class="hidden">
+                <div *ngIf="reportConfig && reportConfig.parameters && reportConfig.parameters.length > 0" class="p-4">
+                    <h2 class="text-sm font-medium text-gray-700 mb-3">PARÂMETROS</h2>
+                    <app-report-parameters 
+                        [parameters]="reportConfig.parameters"
+                        (parametersChange)="onParametersChange($event)">
+                    </app-report-parameters>
+                </div>
+            </div>
+
+            <!-- Templates (mostrado condicionalmente) -->
+            <div class="hidden">
+                <div *ngIf="reportConfig && reportConfig.templates && reportConfig.templates.length > 0" class="p-4">
+                    <h2 class="text-sm font-medium text-gray-700 mb-3">TEMPLATES</h2>
+                    <app-template-manager 
+                        [templates]="reportConfig.templates"
+                        [selectedTemplate]="selectedTemplate"
+                        (templateSelected)="onTemplateSelected($event)">
+                    </app-template-manager>
+                </div>
+            </div>
+        </div>
+
+        <!-- Área principal com o conteúdo do relatório -->
+        <div class="w-full md:w-3/4 p-6 bg-gray-200 min-h-screen">
             <!-- Conteúdo do relatório, quando disponível -->
-            <div *ngIf="getCurrentPage()">
-                <div class="page-container" [ngStyle]="{'transform': 'scale(' + zoomLevel/100 + ')', 'transform-origin': 'top left'}">
-                    <h1 class="text-2xl font-bold mb-6 text-gray-800 pb-2 border-b">{{ getCurrentPage()?.name }}</h1>
-                    
-                    <div *ngFor="let element of getCurrentPage()?.elements" class="mb-8">
-                        <!-- Elemento de texto -->
-                        <div *ngIf="element.type === 'text'" 
-                            [ngStyle]="getElementStyle(element)"
-                            class="prose max-w-none">
-                            {{ element['content'] }}
-                        </div>
+            <div *ngIf="getCurrentPage()" class="flex justify-center">
+                <!-- Folha A4 -->
+                <div class="a4-page">
+                    <div class="page-container" [ngStyle]="{'transform': 'scale(' + zoomLevel/100 + ')', 'transform-origin': 'top center'}">
+                        <h1 class="text-2xl font-bold mb-6 text-gray-800 pb-2 border-b">{{ getCurrentPage()?.name }}</h1>
                         
-                        <!-- Elemento de tabela -->
-                        <div *ngIf="element.type === 'table'" class="overflow-x-auto">
-                            <h3 *ngIf="element['title']" class="text-lg font-semibold mb-2">{{ element['title'] }}</h3>
-                            <app-table-renderer 
-                                [tableElement]="element"
-                                [tableData]="getElementData(element)" 
-                                [zoomLevel]="zoomLevel"
-                                [searchTerm]="searchTerm">
-                            </app-table-renderer>
+                        <div *ngFor="let element of getCurrentPage()?.elements" class="mb-8">
+                            <!-- Elemento de texto -->
+                            <div *ngIf="element.type === 'text'" 
+                                [ngStyle]="getElementStyle(element)"
+                                class="prose max-w-none">
+                                {{ element['content'] }}
+                            </div>
+                            
+                            <!-- Elemento de tabela -->
+                            <div *ngIf="element.type === 'table'" class="overflow-x-auto">
+                                <h3 *ngIf="element['title']" class="text-lg font-semibold mb-2">{{ element['title'] }}</h3>
+                                <app-table-renderer 
+                                    [tableElement]="element"
+                                    [tableData]="getElementData(element)" 
+                                    [zoomLevel]="zoomLevel"
+                                    [searchTerm]="searchTerm">
+                                </app-table-renderer>
+                            </div>
+                            
+                            <!-- Elemento de gráfico -->
+                            <div *ngIf="element.type === 'chart'">
+                                <h3 *ngIf="element['title']" class="text-lg font-semibold mb-2">{{ element['title'] }}</h3>
+                                <app-chart-renderer 
+                                    [chartElement]="element"
+                                    [chartData]="getElementData(element)"
+                                    [zoomLevel]="zoomLevel">
+                                </app-chart-renderer>
+                            </div>
+                            
+                            <!-- Elemento de imagem -->
+                            <div *ngIf="element.type === 'image'" class="text-center">
+                                <app-image-renderer 
+                                    [imageElement]="element" 
+                                    [zoomLevel]="zoomLevel">
+                                </app-image-renderer>
+                                <p *ngIf="element['caption']" class="text-sm text-gray-600 mt-1">
+                                    {{ element['caption'] }}
+                                </p>
+                            </div>
+                            
+                            <!-- Quebra de página -->
+                            <div *ngIf="element.type === 'pageBreak'" class="page-break my-8 border-t-2 border-dashed"></div>
                         </div>
-                        
-                        <!-- Elemento de gráfico -->
-                        <div *ngIf="element.type === 'chart'">
-                            <h3 *ngIf="element['title']" class="text-lg font-semibold mb-2">{{ element['title'] }}</h3>
-                            <app-chart-renderer 
-                                [chartElement]="element"
-                                [chartData]="getElementData(element)"
-                                [zoomLevel]="zoomLevel">
-                            </app-chart-renderer>
-                        </div>
-                        
-                        <!-- Elemento de imagem -->
-                        <div *ngIf="element.type === 'image'" class="text-center">
-                            <app-image-renderer 
-                                [imageElement]="element" 
-                                [zoomLevel]="zoomLevel">
-                            </app-image-renderer>
-                            <p *ngIf="element['caption']" class="text-sm text-gray-600 mt-1">
-                                {{ element['caption'] }}
-                            </p>
-                        </div>
-                        
-                        <!-- Quebra de página -->
-                        <div *ngIf="element.type === 'pageBreak'" class="page-break my-8 border-t-2 border-dashed"></div>
                     </div>
                 </div>
             </div>

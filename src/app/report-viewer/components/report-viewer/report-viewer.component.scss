@@ -5,15 +5,46 @@
     background-color: #f8fafc;
 }
 
+/* A4 paper format styles */
+.a4-page {
+    background-color: white;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 0;
+    margin: 1rem auto;
+    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
 .page-container {
     position: relative;
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
     padding: 2rem;
-    border-radius: 0.5rem;
-    overflow: hidden;
     transition: transform 0.3s ease;
+    margin: 0;
+    height: 100%;
+}
+
+// Professional toolbar styling
+.toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    svg {
+        stroke-width: 2;
+    }
+
+    button, select, input {
+        transition: all 0.2s ease;
+        
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+        }
+    }
 }
 
 // Buttons with better hover states
@@ -89,6 +120,19 @@ table {
     }
 }
 
+// Professional-looking sidebar
+.md\:w-1\/4 {
+    border-right: 1px solid #e5e7eb;
+    min-height: calc(100vh - 60px);
+    
+    /* Page thumbnails */
+    .w-16 {
+        position: relative;
+        border: 1px solid #e5e7eb;
+        aspect-ratio: 210/297;
+    }
+}
+
 // Print optimizations
 @media print {
     .w-full {
@@ -99,18 +143,23 @@ table {
         width: 100% !important;
     }
     
-    .bg-gray-50, .bg-white, .bg-gray-100 {
+    .bg-gray-50, .bg-white, .bg-gray-100, .bg-gray-200 {
         background-color: white !important;
         box-shadow: none !important;
     }
     
-    button, .toolbar {
+    .toolbar, button, .flex.border-b, .hidden {
         display: none !important;
     }
     
-    .page-container {
+    .a4-page {
         box-shadow: none;
         margin: 0;
+        width: 100%;
+    }
+    
+    .page-container {
+        transform: scale(1) !important;
         padding: 0;
     }
     
